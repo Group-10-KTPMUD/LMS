@@ -72,6 +72,9 @@ public class Author {
     
     // funtion
     
+    Classes.Func_Class func = new Classes.Func_Class();
+
+    
     // insert a new author function
     public void addAuthor (String _fname, String _lname, String _expertise, String _about)
     {
@@ -149,7 +152,6 @@ public class Author {
     public ArrayList<Author> authorsList()
     {
         ArrayList<Author> aList = new ArrayList<>();
-        Classes.Func_Class func = new Classes.Func_Class();
                
         try {
             ResultSet rs = func.getData("SELECT * FROM `author`");                   
@@ -166,5 +168,21 @@ public class Author {
         
         return aList;
     }
-
+    
+    // create a function to get author by id
+    public Author getAuthorById(Integer id)
+    {
+        ResultSet rs = func.getData("SELECT * FROM `author` where id = "+id);                   
+        Author author = null;
+            
+        try {
+            if(rs.next())
+            {
+                author = new Author(rs.getInt("id"), rs.getString("firstName"), rs.getString("lastName"), rs.getString("expertise"), rs.getString("about"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Author.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return author;
+    }
 }

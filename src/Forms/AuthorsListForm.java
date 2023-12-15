@@ -17,6 +17,7 @@ public class AuthorsListForm extends javax.swing.JFrame {
      */
     
     Classes.Author author = new Classes.Author();
+    public String formType = "";
     
     public AuthorsListForm() {
         initComponents();
@@ -214,9 +215,12 @@ public class AuthorsListForm extends javax.swing.JFrame {
         int id = Integer.parseInt(jTable_Authors_.getValueAt(index, 0).toString());
         String firstName = jTable_Authors_.getValueAt(index, 1).toString();
         String lastName = jTable_Authors_.getValueAt(index, 2).toString();
-        String fullName =firstName+""+lastName; 
+        String fullName = firstName +" "+ lastName;
         
-        AddBookForm.displayAuthorData(id, fullName);
+        if(formType.equals("edit")) // if this form is called from the edit book form
+            EditBookForm.displayAuthorData(id, fullName);
+        else
+            AddBookForm.displayAuthorData(id, fullName);
         
         //close this form
         this.dispose();

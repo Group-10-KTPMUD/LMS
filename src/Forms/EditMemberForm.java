@@ -4,17 +4,14 @@ import Classes.Member;
 import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
-import javax.swing.JFileChooser;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -446,7 +443,7 @@ public class EditMemberForm extends javax.swing.JFrame {
             }
             else
             {
-                JOptionPane.showMessageDialog(null, "Select a Profile Picture For This Member","No Picture Selected", 2);
+                    JOptionPane.showMessageDialog(null, "Select a Profile Picture For This Member","No Picture Selected", 2);
             }
               
         }
@@ -524,8 +521,8 @@ public class EditMemberForm extends javax.swing.JFrame {
         byte [] image = SelectedMember.getPicture();
         //we will display the image using the imagetype
         //so we will set the image path to null
+        func.displayImage(112, 93,image, "", jLabel_Image);
         
-        func.displayImage(112, 93,image, "", jLabel_Image); 
         }
         else{
         JOptionPane.showMessageDialog(null, "No Member With This Id Is Found","Invalid Id", 3);  
