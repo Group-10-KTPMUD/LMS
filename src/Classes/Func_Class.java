@@ -3,6 +3,7 @@ package Classes;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
+import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import java.sql.PreparedStatement;
@@ -10,7 +11,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JTable;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -65,6 +68,27 @@ public class Func_Class {
         table.getTableHeader().setForeground(Color.white);
         table.getTableHeader().setFont(new Font("Verdana", Font.BOLD, fontsize));
         table.getTableHeader().setOpaque(false);
+    }
+    
+    //create a function to select image 
+    //the function will return the image path
+    public String selectImage(){
+        // select picture from the computer
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Select Profile Picture");
+        
+        fileChooser.setCurrentDirectory(new File("F:\\Image"));
+        
+        FileNameExtensionFilter extensionFilter = new FileNameExtensionFilter("Image", ".png", ".jpg", ".jpeg");
+        fileChooser.addChoosableFileFilter(extensionFilter);
+        
+        int fileState = fileChooser.showSaveDialog(null);
+        String path="";
+        if(fileState == JFileChooser.APPROVE_OPTION)
+        {
+            path = fileChooser.getSelectedFile().getAbsolutePath();
+        }
+        return path;
     }
     
     // create a function to return a resultSet

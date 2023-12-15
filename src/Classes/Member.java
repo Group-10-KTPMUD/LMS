@@ -186,7 +186,7 @@ public class Member {
         }
     }
        // function to populate an arrayList with members
-    public ArrayList<Member> membersList()
+    public ArrayList<Member> membersList(String query)
     {
         ArrayList<Member> mList = new ArrayList<>();
         Classes.Func_Class func = new Classes.Func_Class();
@@ -197,7 +197,7 @@ public class Member {
                 query = "SELECT * FROM `members`";
             }
             
-            ResultSet rs = func.getData("SELECT * FROM `members`");                   
+            ResultSet rs = func.getData(query);                   
             Member member;
             
             while(rs.next())
@@ -212,7 +212,5 @@ public class Member {
         return mList;
     }
 
-    public ArrayList<Member> membersList(String query) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    
 }

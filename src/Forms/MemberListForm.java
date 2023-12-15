@@ -274,7 +274,7 @@ import javax.swing.table.DefaultTableModel;
         //we will display the image using the imagetype
         //so we will set the image path to null
         
-        //func.displayImage(112, 93,image, "", jLabel_Image); 
+        func.displayImage(112, 93,image, "", jLabel_Image); 
         }
         else{
         JOptionPane.showMessageDialog(null, "No Member With This Id Is Found","Invalid Id", 3);  
@@ -327,8 +327,8 @@ import javax.swing.table.DefaultTableModel;
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
-                    //javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                     //javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
                     break;
                 }
             }

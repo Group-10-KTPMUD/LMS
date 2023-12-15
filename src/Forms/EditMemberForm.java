@@ -476,24 +476,14 @@ public class EditMemberForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox_GenderActionPerformed
 
     private void jButton_SelectProfilePicture_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SelectProfilePicture_ActionPerformed
-        // select picture from the computer
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Select Profile Picture");
         
-        fileChooser.setCurrentDirectory(new File("F:\\Image"));
-        
-        FileNameExtensionFilter extensionFilter = new FileNameExtensionFilter("Image", ".png", ".jpg", ".jpeg");
-        fileChooser.addChoosableFileFilter(extensionFilter);
-        
-        int fileState = fileChooser.showSaveDialog(null);
-        if(fileState == JFileChooser.APPROVE_OPTION)
-        {
-            String path = fileChooser.getSelectedFile().getAbsolutePath();
+            //select picture from computer
+            String path = func.selectImage();
             jLabel_ImagePath.setText(path);
             imagePath = path;
             //display the image 
             func.displayImage(112, 93,null, imagePath, jLabel_Image);
-        }
+        
     }//GEN-LAST:event_jButton_SelectProfilePicture_ActionPerformed
 
     private void jButton_Edit_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_Edit_MouseClicked
