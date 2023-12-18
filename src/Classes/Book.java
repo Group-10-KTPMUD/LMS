@@ -1,13 +1,16 @@
 package Classes;
 
 import com.mysql.cj.xdevapi.Result;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Date;
+import java.sql.Statement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import java.sql.ResultSet;
+import javax.swing.JLabel;
 
 /**
  *
@@ -141,7 +144,7 @@ public class Book {
     public void addBook (String _isbn,String _name,Integer _author_id,Integer _genre_id,Integer _quantity,
                 String _publisher,double _price,String _date_received,String _description,byte[] _cover)
     {
-        String insertQuery = "INSERT INTO `books`(`isbn`, `name`, `author_id`, `genre_id`, `quantity`, `publisher`, `price`, `data_received`, `description`, `cover_image`) VALUES (?,?,?,?,?,?,?,?,?,?)";
+        String insertQuery = "INSERT INTO `books`(`isbn`, `name`, `author_id`, `genre_id`, `quantity`, `publisher`, `price`, `date_received`, `description`, `cover_image`) VALUES (?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = DB.getConnection().prepareStatement(insertQuery);
             
@@ -229,6 +232,29 @@ public class Book {
         }       
     }
     
+    
+    // remove book by id function
+    public void removeBook(int _id)
+    {
+        String removeQuery = "DELETE FROM `books` WHERE `id` = ?";
+        try {
+            PreparedStatement ps = DB.getConnection().prepareStatement(removeQuery);
+            ps.setInt(1, _id);
+            
+            if(ps.executeUpdate() != 0)
+            {
+                JOptionPane.showMessageDialog(null, "Books Deleted","remove", 1);
+            }
+            else
+            {             
+                JOptionPane.showMessageDialog(null, "Books Not Deleted","remove", 2);          
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Book.class.getName()).log(Level.SEVERE, null, ex);
+        }       
+    }
+    
+    
     // create a function to check if the isbn already exists
     public boolean isISBNexists(String _isbn)
     {
@@ -274,5 +300,76 @@ public class Book {
             Logger.getLogger(Book.class.getName()).log(Level.SEVERE, null, ex);
         }
         return book;
+    }
+    
+    // function to populate an arrayList with books
+    public ArrayList<Book> booksList(String query)
+    {
+        ArrayList<Book> bList = new ArrayList<>();
+               
+        try {
+            if (query.equals("")) // if the user enter empty string make this the default select
+            {
+                query = "SELECT * FROM `books`";
+            }
+            ResultSet rs = func.getData(query);                   
+            Book book;
+            
+            while(rs.next())
+            {
+                book = new Book(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4),
+                        rs.getInt(5), rs.getInt(6), rs.getString(7), rs.getDouble(8),
+                        rs.getString(9),rs.getString(10), rs.getBytes(11));
+                bList.add(book);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Author.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return bList;
+    }
+    
+    //get book by id
+    public Book getBookById(Integer _id) throws SQLException
+    {
+        // query to get the book by the id
+        String query="SELECT * FROM `books` WHERE `id`="+_id;
+        ResultSet rs = func.getData(query);
+        if(rs.next())
+        {
+            // return the book
+            return new Book(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4),
+                        rs.getInt(5), rs.getInt(6), rs.getString(7), rs.getDouble(8),
+                        rs.getString(9),rs.getString(10), rs.getBytes(11));
+        }
+        else
+        {        
+            // return null
+            return null; 
+        }
+    }
+    
+    // create a function to display the lastest 5 books
+    // we will pass an array of JLabels as a parameter
+    public void displayBooksCover(JLabel[] labels_tab)
+    {
+        ResultSet rs;
+        Statement st;
+        
+        try {
+            st = DB.getConnection().createStatement();
+            rs = st.executeQuery("SELECT `cover_image` FROM `books` LIMIT 5");
+            byte[] image;
+            int i = 0; // to populate the labels_tab items with image
+            while (rs.next()) // this go through all the data
+            { 
+                image = rs.getBytes("cover_image");
+                func.displayImage(labels_tab[i].getWidth(), labels_tab[i].getHeight(), image, name, labels_tab[i]);
+                i++;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Book.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 }

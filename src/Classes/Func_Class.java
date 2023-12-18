@@ -4,14 +4,16 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.io.File;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -106,5 +108,25 @@ public class Func_Class {
             Logger.getLogger(Func_Class.class.getName()).log(Level.SEVERE, null, ex);
         }
         return rs;
+    }
+    
+    //create a function to count the number of data
+    public int countData(String tableName)
+    {
+        int total = 0;
+        ResultSet rs;
+        Statement st;
+        
+        try {
+            st = DB.getConnection().createStatement();
+            rs = st.executeQuery("SELECT COUNT(*) as total FROM `"+tableName+"`");
+            if (rs.next())
+            { 
+            total = rs.getInt("total");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Func_Class.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return total;
     }
 }

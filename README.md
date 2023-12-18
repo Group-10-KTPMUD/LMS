@@ -13,7 +13,3 @@ MySQL Database
 phpMyAdmin (to manage database)
 Xampp Server (to create a local server)
 Beside that, we use some image resources like DevianArt, Pixabay, Canva to get beautiful images and books cover.
-
-
-
-
