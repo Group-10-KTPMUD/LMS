@@ -511,7 +511,7 @@ import javax.swing.border.Border;
             String descripstion =jTextArea_Description.getText();
 
             Integer author_id=Integer.parseInt(jLabel_Author_ID.getText());//get the author id
-            Integer genre_id=Integer.parseInt(jLabel_Genre_ID.getText());
+            Integer genre_id=Integer.parseInt(jLabel_Genre_ID.getText());//get the genre id
             Integer quantity = Integer.parseInt(jSpinner_Quantity.getValue().toString());
 
 
