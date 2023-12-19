@@ -358,7 +358,7 @@ public class Book {
         
         try {
             st = DB.getConnection().createStatement();
-            rs = st.executeQuery("SELECT `cover_image` FROM `books` LIMIT 5");
+            rs = st.executeQuery("SELECT `cover_image` FROM `books`order by id desc LIMIT 5");
             byte[] image;
             int i = 0; // to populate the labels_tab items with image
             while (rs.next()) // this go through all the data
