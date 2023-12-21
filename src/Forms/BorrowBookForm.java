@@ -63,9 +63,9 @@ import javax.swing.border.Border;
         jButton_Cancel_ = new javax.swing.JButton();
         jDateChooser_BorrowDate = new com.toedter.calendar.JDateChooser();
         jButton_search_book = new javax.swing.JButton();
-        jLabel_BookName = new javax.swing.JLabel();
+        jLabel_BookName_ = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jLabel_MemberFullName = new javax.swing.JLabel();
+        jLabel_MemberFullName_ = new javax.swing.JLabel();
         jButton_search_member = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         jLabel_Available = new javax.swing.JLabel();
@@ -160,18 +160,28 @@ import javax.swing.border.Border;
             }
         });
 
-        jLabel_BookName.setBackground(new java.awt.Color(240, 240, 240));
-        jLabel_BookName.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jLabel_BookName.setForeground(new java.awt.Color(51, 102, 255));
-        jLabel_BookName.setText("Book Name");
+        jLabel_BookName_.setBackground(new java.awt.Color(240, 240, 240));
+        jLabel_BookName_.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jLabel_BookName_.setForeground(new java.awt.Color(51, 102, 255));
+        jLabel_BookName_.setText("Book Name");
+        jLabel_BookName_.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_BookName_MouseClicked(evt);
+            }
+        });
 
         jLabel14.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jLabel14.setText("Enter Member ID:");
 
-        jLabel_MemberFullName.setBackground(new java.awt.Color(240, 240, 240));
-        jLabel_MemberFullName.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jLabel_MemberFullName.setForeground(new java.awt.Color(51, 102, 255));
-        jLabel_MemberFullName.setText("Member Full-Name");
+        jLabel_MemberFullName_.setBackground(new java.awt.Color(240, 240, 240));
+        jLabel_MemberFullName_.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jLabel_MemberFullName_.setForeground(new java.awt.Color(51, 102, 255));
+        jLabel_MemberFullName_.setText("Member Full-Name");
+        jLabel_MemberFullName_.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_MemberFullName_MouseClicked(evt);
+            }
+        });
 
         jButton_search_member.setText("Search member");
         jButton_search_member.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -226,7 +236,7 @@ import javax.swing.border.Border;
                                 .addComponent(jLabel14)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel_MemberFullName)
+                                    .addComponent(jLabel_MemberFullName_)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(jSpinner_BookID, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -235,7 +245,7 @@ import javax.swing.border.Border;
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jButton_search_member, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
                                             .addComponent(jButton_search_book, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                    .addComponent(jLabel_BookName)))
+                                    .addComponent(jLabel_BookName_)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel15)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -273,14 +283,14 @@ import javax.swing.border.Border;
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSpinner_BookID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel_BookName)
+                .addComponent(jLabel_BookName_)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
                     .addComponent(jButton_search_member)
                     .addComponent(jSpinner_MemberID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel_MemberFullName)
+                .addComponent(jLabel_MemberFullName_)
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
@@ -365,6 +375,17 @@ import javax.swing.border.Border;
             }
             else{
                 borrow.addBorrow(_book_id, _member_id, "borrowed", _borrow_date, _return_date, _note);
+                //reset field
+                jSpinner_BookID.setValue(0);
+                jSpinner_MemberID.setValue(0);
+                jLabel_BookName_.setText("Book name");
+                jLabel_MemberFullName_.setText("Member Full-Name");
+                jLabel_Available.setText("Yes-or-No");
+                jLabel_Available.setForeground(new Color(51,102,255));
+                jDateChooser_BorrowDate.setDate(new Date());
+                jDateChooser_ReturnDate.setDate(new Date());
+                book_Exist = false;
+                member_Exist = false;
             }
             
         }
@@ -393,7 +414,7 @@ import javax.swing.border.Border;
             Classes.Book selectedBook = book.getBookById(book_id);
             if(selectedBook != null){ //if this book exist
                 //display this book title/name
-                jLabel_BookName.setText(selectedBook.getName());
+                jLabel_BookName_.setText(selectedBook.getName());
                 //set the book_exist to true
                 book_Exist = true;
                 
@@ -411,7 +432,7 @@ import javax.swing.border.Border;
             }
             else{  //if this book doesn't exist
                 JOptionPane.showMessageDialog(null, "This book doesn't exist","Book not found", 2);
-                jLabel_BookName.setText("Book name");
+                jLabel_BookName_.setText("Book name");
                 book_Exist = false;
                 jLabel_Available.setText("Yes-or-No");
                 jLabel_Available.setForeground(new Color(51,102,255));
@@ -434,13 +455,13 @@ import javax.swing.border.Border;
             Classes.Member selectedMember = member.getMemberById(member_id);
             if(selectedMember != null){ //if this member exist
                 //display this member full name
-                jLabel_MemberFullName.setText(selectedMember.getFirstName() + " " + selectedMember.getLastName());
+                jLabel_MemberFullName_.setText(selectedMember.getFirstName() + " " + selectedMember.getLastName());
                 //set the member_exist to true
                 member_Exist = true;
             }
             else{  //if this member doesn't exist
                 JOptionPane.showMessageDialog(null, "This member doesn't exist","Member not found", 2);
-                jLabel_MemberFullName.setText("Member Full-Name");
+                jLabel_MemberFullName_.setText("Member Full-Name");
                        
                 member_Exist = false;
             }
@@ -449,7 +470,18 @@ import javax.swing.border.Border;
         }
         
     }//GEN-LAST:event_jButton_search_memberActionPerformed
+
+    private void jLabel_BookName_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_BookName_MouseClicked
+        //Display the book into card
+    }//GEN-LAST:event_jLabel_BookName_MouseClicked
+
+    private void jLabel_MemberFullName_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_MemberFullName_MouseClicked
+        // Display the member into card
+    }//GEN-LAST:event_jLabel_MemberFullName_MouseClicked
    
+    
+    
+    
     // create a function to verify the required fields
     public boolean verif(){
         return true;
@@ -521,10 +553,10 @@ import javax.swing.border.Border;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabel_Available;
-    private javax.swing.JLabel jLabel_BookName;
+    private javax.swing.JLabel jLabel_BookName_;
     private javax.swing.JLabel jLabel_CloseForm_;
     private javax.swing.JLabel jLabel_FormTitle;
-    private javax.swing.JLabel jLabel_MemberFullName;
+    private javax.swing.JLabel jLabel_MemberFullName_;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
