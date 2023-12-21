@@ -2,15 +2,10 @@ package Forms;
 
 import java.awt.Color;
 import java.awt.HeadlessException;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
@@ -21,7 +16,6 @@ import javax.swing.border.Border;
     public class BorrowBookForm extends javax.swing.JFrame {
 
     //Creates new form MemberListForm
-    
     Classes.Member member = new Classes.Member();
     Classes.Func_Class func = new Classes.Func_Class();
     Classes.Book book = new Classes.Book();
@@ -497,7 +491,9 @@ import javax.swing.border.Border;
 
     private void jLabel_MemberFullName_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_MemberFullName_MouseClicked
         // Display the member into card
-        
+        int member_id = (int)jSpinner_MemberID.getValue();
+        MemberInfoCardForm membercardF = new MemberInfoCardForm(member_id);
+        membercardF.setVisible(true);
 
     }//GEN-LAST:event_jLabel_MemberFullName_MouseClicked
 
@@ -552,15 +548,26 @@ import javax.swing.border.Border;
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BorrowBookForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BorrowBookForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BorrowBookForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(BorrowBookForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -580,6 +587,7 @@ import javax.swing.border.Border;
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new BorrowBookForm().setVisible(true);
             }
