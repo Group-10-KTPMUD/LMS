@@ -473,10 +473,15 @@ import javax.swing.border.Border;
 
     private void jLabel_BookName_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_BookName_MouseClicked
         //Display the book into card
+        BookInfoCardForm bookcardF = new BookInfoCardForm();
+        bookcardF.setVisible(true);
+        
     }//GEN-LAST:event_jLabel_BookName_MouseClicked
 
     private void jLabel_MemberFullName_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_MemberFullName_MouseClicked
         // Display the member into card
+        
+
     }//GEN-LAST:event_jLabel_MemberFullName_MouseClicked
    
     

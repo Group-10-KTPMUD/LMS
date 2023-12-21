@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 import java.util.ArrayList;
+import java.util.HashSet;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
@@ -15,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
     public class BookInfoCardForm extends javax.swing.JFrame {
 
     //Creates new form BooksListForm
-    
+     
     Classes.Book book = new Classes.Book();
     Classes.Func_Class func = new Classes.Func_Class();
     Classes.Author author = new Classes.Author();
@@ -34,19 +35,20 @@ import javax.swing.table.DefaultTableModel;
         Classes.Func_Class func = new Classes.Func_Class();
         func.displayImage(75, 60,null, "/Images/book.png", jLabel_FormTitle);
         
+      
         //add a black border to the jlabelImage
         Border JlabelImageBorder = BorderFactory.createMatteBorder(1, 1, 1, 1,new Color(0, 0, 0));
         jLabel_Image.setBorder(JlabelImageBorder);
         
         // add a default image to the jlabel
         func.displayImage(112, 93,null, "/Images/blank-profile.png", jLabel_Image);
-        displayBookInfo(2);
+        displayBookInfo(3);
+ 
     }
     
     //Create a function to display the book info
     public void displayBookInfo(int book_id){
         try {
-            
             Classes.Book SelectedBook = book.getBookById(book_id);
             if(SelectedBook != null){
                 jLabel_ISBN.setText(SelectedBook.getIsbn());
@@ -63,21 +65,21 @@ import javax.swing.table.DefaultTableModel;
                 jLabel_Quantity.setText(String.valueOf(SelectedBook.getQuantity()));
                 jLabel_Date_Rcv.setText(SelectedBook.getDate_received());
                 jTextArea_Description.setText(SelectedBook.getDescription());
-                
+
+      
                 //display the book cover image
                 byte [] image = SelectedBook.getCover();
                 //we will display the image using the imagetype
                 //so we will make the image path empty
-
-                func.displayImage(152, 170,image, "", jLabel_Image); 
+        
+                func.displayImage(124, 173,image, "", jLabel_Image); 
             }
-            
         } catch (SQLException ex) {
             Logger.getLogger(BookInfoCardForm.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -90,11 +92,11 @@ import javax.swing.table.DefaultTableModel;
         jLabel_ISBN = new javax.swing.JLabel();
         jLabel_Name = new javax.swing.JLabel();
         jLabel_Publisher = new javax.swing.JLabel();
-        jLabel_Quantity = new javax.swing.JLabel();
+        jLabel_Price = new javax.swing.JLabel();
         jLabel_Author = new javax.swing.JLabel();
         jLabel_Genre = new javax.swing.JLabel();
-        jLabel_Price = new javax.swing.JLabel();
         jLabel_Date_Rcv = new javax.swing.JLabel();
+        jLabel_Quantity = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea_Description = new javax.swing.JTextArea();
 
@@ -108,14 +110,14 @@ import javax.swing.table.DefaultTableModel;
         jLabel_FormTitle.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel_FormTitle.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_FormTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel_FormTitle.setText("Books Info Card");
+        jLabel_FormTitle.setText("Book Info Card");
         jLabel_FormTitle.setOpaque(true);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel_FormTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel_FormTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,7 +141,7 @@ import javax.swing.table.DefaultTableModel;
         });
 
         jLabel_Image.setBackground(new java.awt.Color(204, 255, 204));
-        jLabel_Image.setForeground(new java.awt.Color(30, 30, 30));
+        jLabel_Image.setForeground(new java.awt.Color(0, 0, 0));
         jLabel_Image.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel_Image.setOpaque(true);
         jLabel_Image.setPreferredSize(new java.awt.Dimension(34, 14));
@@ -153,8 +155,8 @@ import javax.swing.table.DefaultTableModel;
         jLabel_Publisher.setForeground(new java.awt.Color(0, 51, 153));
         jLabel_Publisher.setText("Publisher");
 
-        jLabel_Quantity.setForeground(new java.awt.Color(0, 51, 153));
-        jLabel_Quantity.setText("Quantity");
+        jLabel_Price.setForeground(new java.awt.Color(0, 51, 153));
+        jLabel_Price.setText("Price");
 
         jLabel_Author.setForeground(new java.awt.Color(0, 51, 153));
         jLabel_Author.setText("Author");
@@ -162,20 +164,17 @@ import javax.swing.table.DefaultTableModel;
         jLabel_Genre.setForeground(new java.awt.Color(0, 51, 153));
         jLabel_Genre.setText("Genre");
 
-        jLabel_Price.setForeground(new java.awt.Color(0, 51, 153));
-        jLabel_Price.setText("Price");
-
         jLabel_Date_Rcv.setForeground(new java.awt.Color(0, 51, 153));
         jLabel_Date_Rcv.setText("Date Received");
 
+        jLabel_Quantity.setForeground(new java.awt.Color(0, 51, 153));
+        jLabel_Quantity.setText("Quantity");
+
         jTextArea_Description.setBackground(new java.awt.Color(255, 255, 255));
         jTextArea_Description.setColumns(20);
-        jTextArea_Description.setFont(new java.awt.Font("Monospaced", 0, 13)); // NOI18N
         jTextArea_Description.setForeground(new java.awt.Color(0, 0, 0));
         jTextArea_Description.setRows(5);
         jTextArea_Description.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextArea_Description.setCaretColor(new java.awt.Color(0, 0, 0));
-        jTextArea_Description.setDisabledTextColor(new java.awt.Color(109, 109, 109));
         jTextArea_Description.setEnabled(false);
         jScrollPane1.setViewportView(jTextArea_Description);
 
@@ -189,21 +188,21 @@ import javax.swing.table.DefaultTableModel;
                 .addComponent(jLabel_CloseForm_, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel_Image, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel_ISBN)
-                    .addComponent(jLabel_Name)
-                    .addComponent(jLabel_Author)
-                    .addComponent(jLabel_Publisher)
-                    .addComponent(jLabel_Quantity)
-                    .addComponent(jLabel_Genre)
-                    .addComponent(jLabel_Price)
-                    .addComponent(jLabel_Date_Rcv))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel_Image, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel_ISBN)
+                            .addComponent(jLabel_Name)
+                            .addComponent(jLabel_Author)
+                            .addComponent(jLabel_Genre)
+                            .addComponent(jLabel_Quantity)
+                            .addComponent(jLabel_Date_Rcv)
+                            .addComponent(jLabel_Publisher)
+                            .addComponent(jLabel_Price))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -230,10 +229,10 @@ import javax.swing.table.DefaultTableModel;
                         .addComponent(jLabel_Quantity)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel_Date_Rcv))
-                    .addComponent(jLabel_Image, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
-                .addContainerGap())
+                    .addComponent(jLabel_Image, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -244,9 +243,7 @@ import javax.swing.table.DefaultTableModel;
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -257,10 +254,6 @@ import javax.swing.table.DefaultTableModel;
         this.dispose();
     }//GEN-LAST:event_jLabel_CloseForm_MouseClicked
 
-   
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
