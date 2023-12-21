@@ -53,18 +53,9 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="jButton_Return_" min="-2" pref="180" max="-2" attributes="0"/>
-                                  <EmptySpace pref="47" max="32767" attributes="0"/>
-                                  <Component id="jButton_Lost_" min="-2" pref="184" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
-                                  <Component id="jLabel_BookName_" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="jButton_Return_" min="-2" pref="180" max="-2" attributes="0"/>
+                          <EmptySpace pref="47" max="32767" attributes="0"/>
+                          <Component id="jButton_Lost_" min="-2" pref="184" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
@@ -75,26 +66,19 @@
                               <Component id="jLabel19" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel20" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jScrollPane1" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-                                  <Component id="jLabel_MemberFullName_" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jScrollPane1" max="32767" attributes="0"/>
-                                      <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jSpinner_MemberID" min="-2" pref="178" max="-2" attributes="0"/>
-                                              <Component id="jSpinner_BookID" min="-2" pref="178" max="-2" attributes="0"/>
-                                              <Component id="jDateChooser_BorrowDate" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                                              <Component id="jDateChooser_ReturnDate" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                      </Group>
+                                      <Component id="jSpinner_MemberID" min="-2" pref="178" max="-2" attributes="0"/>
+                                      <Component id="jSpinner_BookID" min="-2" pref="178" max="-2" attributes="0"/>
+                                      <Component id="jDateChooser_BorrowDate" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                                      <Component id="jDateChooser_ReturnDate" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                                      <Component id="jLabel_BookName_" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel_MemberFullName_" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
