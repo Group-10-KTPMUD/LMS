@@ -11,7 +11,38 @@ import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
-     
+      /*public void displayBookInfo(int _book_id){
+        try {
+            Classes.Book SelectedBook = book.getBookById(_book_id);
+            if(SelectedBook != null){
+                jLabel_ISBN.setText(SelectedBook.getIsbn());
+                jLabel_Name.setText(SelectedBook.getName());
+           
+                // we need to display the author name
+                jLabel_Author.setText(author.getAuthorById(SelectedBook.getAuthor_id()).getFirstName() + " " + author.getAuthorById(SelectedBook.getAuthor_id()).getLastName());
+           
+                // we need to display the genre name
+                jLabel_Genre.setText(genre.getGenreById(SelectedBook.getGenre_id()).getName());
+           
+                jLabel_Publisher.setText(SelectedBook.getPublisher());
+                jLabel_Price.setText(String.valueOf(SelectedBook.getPrice()));
+                jLabel_Quantity.setText(String.valueOf(SelectedBook.getQuantity()));
+                jLabel_Date_Rcv.setText(SelectedBook.getDate_received());
+                jTextArea_Description.setText(SelectedBook.getDescription());
+
+      
+                //display the book cover image
+                byte [] image = SelectedBook.getCover();
+                //we will display the image using the imagetype
+                //so we will make the image path empty
+        
+                func.displayImage(124, 173,image, "", jLabel_Image); 
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BookInfoCardForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }*/
     public class BookListForm extends javax.swing.JFrame {
 
     /**

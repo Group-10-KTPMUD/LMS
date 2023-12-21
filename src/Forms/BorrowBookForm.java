@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
      
@@ -44,8 +45,9 @@ import javax.swing.border.Border;
         func.displayImage(80, 60,null, "/Images/organizer.png", jLabel_FormTitle);
         
         
-        // add a default image to the jlabel
-        // func.displayImage(112, 93,null, "/Images/blank-profile.png", jLabel_Image);
+        //add a white border in the bottom of the book name and member full name jLabel
+        setBorderToJLabel(jLabel_BookName_, Color.white);
+        setBorderToJLabel(jLabel_MemberFullName_, Color.white);
         
     }
 
@@ -164,9 +166,16 @@ import javax.swing.border.Border;
         jLabel_BookName_.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabel_BookName_.setForeground(new java.awt.Color(51, 102, 255));
         jLabel_BookName_.setText("Book Name");
+        jLabel_BookName_.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel_BookName_.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_BookName_MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel_BookName_MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel_BookName_MouseExited(evt);
             }
         });
 
@@ -177,9 +186,16 @@ import javax.swing.border.Border;
         jLabel_MemberFullName_.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabel_MemberFullName_.setForeground(new java.awt.Color(51, 102, 255));
         jLabel_MemberFullName_.setText("Member Full-Name");
+        jLabel_MemberFullName_.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel_MemberFullName_.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_MemberFullName_MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel_MemberFullName_MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel_MemberFullName_MouseExited(evt);
             }
         });
 
@@ -473,7 +489,8 @@ import javax.swing.border.Border;
 
     private void jLabel_BookName_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_BookName_MouseClicked
         //Display the book into card
-        BookInfoCardForm bookcardF = new BookInfoCardForm();
+        int book_id = (int)jSpinner_BookID.getValue();
+        BookInfoCardForm bookcardF = new BookInfoCardForm(book_id);
         bookcardF.setVisible(true);
         
     }//GEN-LAST:event_jLabel_BookName_MouseClicked
@@ -483,7 +500,32 @@ import javax.swing.border.Border;
         
 
     }//GEN-LAST:event_jLabel_MemberFullName_MouseClicked
-   
+
+    private void jLabel_BookName_MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_BookName_MouseEntered
+        //add a border in the bottom of the book name jLabel
+        setBorderToJLabel(jLabel_BookName_, new Color(51,102,255));
+    }//GEN-LAST:event_jLabel_BookName_MouseEntered
+
+    private void jLabel_BookName_MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_BookName_MouseExited
+        //add a white border in the bottom of the book name jLabel
+        setBorderToJLabel(jLabel_BookName_, Color.white);
+    }//GEN-LAST:event_jLabel_BookName_MouseExited
+
+    private void jLabel_MemberFullName_MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_MemberFullName_MouseEntered
+        //add a border in the bottom of the member full name jLabel
+        setBorderToJLabel(jLabel_MemberFullName_, new Color(51,102,255));
+    }//GEN-LAST:event_jLabel_MemberFullName_MouseEntered
+
+    private void jLabel_MemberFullName_MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_MemberFullName_MouseExited
+        //add a white border in the bottom of the member full name jLabel
+        setBorderToJLabel(jLabel_MemberFullName_, Color.white);
+    }//GEN-LAST:event_jLabel_MemberFullName_MouseExited
+    
+    //Create a little function to set border
+    public void setBorderToJLabel(JLabel label, Color color){
+        Border border = BorderFactory.createMatteBorder(0,0,1,0,color);
+        label.setBorder(border);
+    }
     
     
     
