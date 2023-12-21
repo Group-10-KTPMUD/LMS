@@ -13,9 +13,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
      
-    public class BorrowBookForm extends javax.swing.JFrame {
+    public class ReturnBookForm extends javax.swing.JFrame {
 
-    //Creates Borrow Book form
+    //Creates Return Book form
         
     Classes.Member member = new Classes.Member();
     Classes.Func_Class func = new Classes.Func_Class();
@@ -26,7 +26,7 @@ import javax.swing.border.Border;
     boolean book_Exist = false;
     boolean member_Exist = false;
     
-    public BorrowBookForm() {
+    public ReturnBookForm() {
         initComponents();
         // center the form
         this.setLocationRelativeTo(null);
@@ -263,7 +263,7 @@ import javax.swing.border.Border;
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jDateChooser_ReturnDate, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jDateChooser_BorrowDate, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(12, Short.MAX_VALUE))
+                        .addContainerGap(417, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
@@ -449,7 +449,7 @@ import javax.swing.border.Border;
                 jLabel_Available.setForeground(new Color(51,102,255));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(BorrowBookForm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ReturnBookForm.class.getName()).log(Level.SEVERE, null, ex);
             
         }
         
@@ -477,7 +477,7 @@ import javax.swing.border.Border;
                 member_Exist = false;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(BorrowBookForm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ReturnBookForm.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_jButton_search_memberActionPerformed
@@ -523,12 +523,18 @@ import javax.swing.border.Border;
         Border border = BorderFactory.createMatteBorder(0,0,1,0,color);
         label.setBorder(border);
     }
-
+    
+    
+    
     // create a function to verify the required fields
     public boolean verif(){
         return true;
     }
     
+   
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -544,8 +550,24 @@ import javax.swing.border.Border;
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BorrowBookForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReturnBookForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -584,7 +606,7 @@ import javax.swing.border.Border;
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new BorrowBookForm().setVisible(true);
+                new ReturnBookForm().setVisible(true);
             }
         });
     }

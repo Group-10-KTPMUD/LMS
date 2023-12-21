@@ -36,7 +36,7 @@ import java.sql.SQLException;
         // add a default image to the jlabel
         func.displayImage(140, 170,null, "/Images/blank-profile.png", jLabel_Image);
         
-        displayMemberInfo(1);
+        displayMemberInfo(member_id);
     }
     
     //Create a function to display the member info

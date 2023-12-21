@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
     public class BookInfoCardForm extends javax.swing.JFrame {
 
-    //Creates new form BooksListForm
+    //Creates Book Info Card form
      
     Classes.Book book = new Classes.Book();
     Classes.Func_Class func = new Classes.Func_Class();
