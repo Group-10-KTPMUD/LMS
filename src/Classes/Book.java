@@ -1,7 +1,5 @@
 package Classes;
 
-import com.mysql.cj.xdevapi.Result;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,10 +10,6 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JLabel;
 
-/**
- *
- * @author ADMIN
- */
 public class Book {
     
     private Integer id;

@@ -3,7 +3,7 @@ package Classes;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -14,8 +14,78 @@ public class Borrow_Book {
     private String status; //Borrowed - Returned - Lost
     private String borrow_date;
     private String Return_date;
+    private String note;
+    public int getBook_id() {
+        return book_id;
+    }
+
+    public int getMember_id() {
+        return member_id;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public String getBorrow_date() {
+        return borrow_date;
+    }
+
+    public String getReturn_date() {
+        return Return_date;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook_id(int book_id) {
+        this.book_id = book_id;
+    }
+
+    public void setMember_id(int member_id) {
+        this.member_id = member_id;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setBorrow_date(String borrow_date) {
+        this.borrow_date = borrow_date;
+    }
+
+    public void setReturn_date(String Return_date) {
+        this.Return_date = Return_date;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
+    
+    public Borrow_Book(){
+        
+    }
+
+    public Borrow_Book(int _book_id, int _member_id, String _status, String _borrow_date, String _Return_date, String _note) {
+        this.book_id = _book_id;
+        this.member_id = _member_id;
+        this.status = _status;
+        this.borrow_date = _borrow_date;
+        this.Return_date = _Return_date;
+        this.note = _note;
+    }
     
     Book book = new Book();
+    Func_Class func = new Func_Class();
     
     //Add a new borrowing
     public void addBorrow(int _book_id, int _member_id, String _status, String _borrow_date, String _return_date, String _note){
@@ -90,5 +160,47 @@ public class Borrow_Book {
             Logger.getLogger(Borrow_Book.class.getName()).log(Level.SEVERE, null, ex);
         }
         return total;
+    }
+    
+    // function to populate an arrayList with borrowed/returned/lost books
+    public ArrayList<Borrow_Book> borrowedBooksList(String status)
+    {
+        ArrayList<Borrow_Book> borrowBList = new ArrayList<>();
+        String query;
+        switch(status){
+            case "all":
+                query = "";
+                break;
+                
+            case "borrowed":
+                query = "";
+                break;
+                
+            case "returned":
+                query = "";
+                break;
+            
+            case "lost":
+                query = "";
+                break;
+        }
+               
+        try {
+            
+            query = "SELECT * FROM `books`";
+            ResultSet rs = func.getData(query);                   
+            Borrow_Book borrowBook;
+            
+            while(rs.next())
+            {
+                borrowBook = new Borrow_Book(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4),
+                        rs.getString(5), rs.getString(6));
+                borrowBList.add(borrowBook);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Borrow_Book.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return borrowBList;
     }
 }

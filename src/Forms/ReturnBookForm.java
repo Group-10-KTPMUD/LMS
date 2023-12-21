@@ -56,14 +56,12 @@ import javax.swing.border.Border;
         jLabel_CloseForm_ = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jButton_Borrow_ = new javax.swing.JButton();
-        jButton_Cancel_ = new javax.swing.JButton();
+        jButton_Return_ = new javax.swing.JButton();
+        jButton_Lost_ = new javax.swing.JButton();
         jDateChooser_BorrowDate = new com.toedter.calendar.JDateChooser();
         jLabel_BookName_ = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel_MemberFullName_ = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel_Available = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jDateChooser_ReturnDate = new com.toedter.calendar.JDateChooser();
         jSpinner_BookID = new javax.swing.JSpinner();
@@ -71,8 +69,10 @@ import javax.swing.border.Border;
         jLabel20 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea_Note = new javax.swing.JTextArea();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable_Authors_ = new javax.swing.JTable();
+        jLabel10 = new javax.swing.JLabel();
+        jComboBox_Status_ = new javax.swing.JComboBox<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable_BorrowedBooks_ = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -115,36 +115,36 @@ import javax.swing.border.Border;
         });
 
         jLabel9.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jLabel9.setText("Enter Book ID:");
+        jLabel9.setText("Book ID:");
 
         jLabel15.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jLabel15.setText("Borrow Date :");
 
-        jButton_Borrow_.setBackground(new java.awt.Color(204, 204, 204));
-        jButton_Borrow_.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton_Borrow_.setText("Return");
-        jButton_Borrow_.addMouseListener(new java.awt.event.MouseAdapter() {
+        jButton_Return_.setBackground(new java.awt.Color(204, 204, 204));
+        jButton_Return_.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton_Return_.setText("Return");
+        jButton_Return_.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton_Borrow_MouseClicked(evt);
+                jButton_Return_MouseClicked(evt);
             }
         });
-        jButton_Borrow_.addActionListener(new java.awt.event.ActionListener() {
+        jButton_Return_.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_Borrow_ActionPerformed(evt);
+                jButton_Return_ActionPerformed(evt);
             }
         });
 
-        jButton_Cancel_.setBackground(new java.awt.Color(204, 204, 204));
-        jButton_Cancel_.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton_Cancel_.setText("Lost");
-        jButton_Cancel_.addMouseListener(new java.awt.event.MouseAdapter() {
+        jButton_Lost_.setBackground(new java.awt.Color(204, 204, 204));
+        jButton_Lost_.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton_Lost_.setText("Lost");
+        jButton_Lost_.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton_Cancel_MouseClicked(evt);
+                jButton_Lost_MouseClicked(evt);
             }
         });
-        jButton_Cancel_.addActionListener(new java.awt.event.ActionListener() {
+        jButton_Lost_.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_Cancel_ActionPerformed(evt);
+                jButton_Lost_ActionPerformed(evt);
             }
         });
 
@@ -166,7 +166,7 @@ import javax.swing.border.Border;
         });
 
         jLabel14.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jLabel14.setText("Enter Member ID:");
+        jLabel14.setText("Member ID:");
 
         jLabel_MemberFullName_.setBackground(new java.awt.Color(240, 240, 240));
         jLabel_MemberFullName_.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
@@ -185,14 +185,6 @@ import javax.swing.border.Border;
             }
         });
 
-        jLabel17.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jLabel17.setText("Is This Book Available: ");
-
-        jLabel_Available.setBackground(new java.awt.Color(240, 240, 240));
-        jLabel_Available.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel_Available.setForeground(new java.awt.Color(51, 102, 255));
-        jLabel_Available.setText("Yes-or-No");
-
         jLabel19.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jLabel19.setText("Return Date:");
 
@@ -207,8 +199,14 @@ import javax.swing.border.Border;
         jTextArea_Note.setRows(5);
         jScrollPane1.setViewportView(jTextArea_Note);
 
-        jTable_Authors_.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTable_Authors_.setModel(new javax.swing.table.DefaultTableModel(
+        jLabel10.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jLabel10.setText("Select Book Status: ");
+
+        jComboBox_Status_.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jComboBox_Status_.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Borrowed", "Returned", "Lost" }));
+
+        jTable_BorrowedBooks_.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTable_BorrowedBooks_.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -216,7 +214,12 @@ import javax.swing.border.Border;
 
             }
         ));
-        jScrollPane2.setViewportView(jTable_Authors_);
+        jTable_BorrowedBooks_.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable_BorrowedBooks_MouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(jTable_BorrowedBooks_);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -227,44 +230,50 @@ import javax.swing.border.Border;
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel_CloseForm_, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel17)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel_Available))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(34, 34, 34)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel_MemberFullName_)
-                            .addComponent(jLabel_BookName_)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jSpinner_BookID, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                                .addComponent(jSpinner_MemberID))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButton_Return_, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                                .addComponent(jButton_Lost_, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(132, 132, 132)
+                                .addComponent(jLabel_BookName_)
+                                .addGap(116, 116, 116))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton_Borrow_, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(jButton_Cancel_, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel14)
                             .addComponent(jLabel15)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel19)
-                                .addGap(7, 7, 7)))
-                        .addGap(35, 35, 35)
+                            .addComponent(jLabel19)
+                            .addComponent(jLabel20))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jDateChooser_BorrowDate, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jDateChooser_ReturnDate, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(47, 47, 47)
+                                .addComponent(jLabel_MemberFullName_)
+                                .addGap(99, 99, 99))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane1)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jSpinner_MemberID, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jSpinner_BookID, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jDateChooser_BorrowDate, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jDateChooser_ReturnDate, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, Short.MAX_VALUE)))))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addComponent(jLabel20)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox_Status_, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -272,16 +281,15 @@ import javax.swing.border.Border;
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel_CloseForm_, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(36, 36, 36)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jSpinner_BookID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10)
+                    .addComponent(jComboBox_Status_, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(40, 40, 40)
-                                .addComponent(jLabel9))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSpinner_BookID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(11, 11, 11)
                         .addComponent(jLabel_BookName_)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -289,33 +297,24 @@ import javax.swing.border.Border;
                             .addComponent(jSpinner_MemberID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel_MemberFullName_)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel17)
-                            .addComponent(jLabel_Available))
-                        .addGap(21, 21, 21)
+                        .addGap(19, 19, 19)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jDateChooser_BorrowDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel15))
-                        .addGap(18, 18, 18)
+                            .addComponent(jLabel15)
+                            .addComponent(jDateChooser_BorrowDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel19)
                             .addComponent(jDateChooser_ReturnDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel20)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel20)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton_Borrow_, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton_Cancel_, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                .addGap(22, 22, 22))
+                            .addComponent(jButton_Lost_, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton_Return_, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -337,12 +336,12 @@ import javax.swing.border.Border;
         this.dispose();
     }//GEN-LAST:event_jLabel_CloseForm_MouseClicked
 
-    private void jButton_Borrow_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_Borrow_MouseClicked
+    private void jButton_Return_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_Return_MouseClicked
         
         
-    }//GEN-LAST:event_jButton_Borrow_MouseClicked
+    }//GEN-LAST:event_jButton_Return_MouseClicked
 
-    private void jButton_Borrow_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Borrow_ActionPerformed
+    private void jButton_Return_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Return_ActionPerformed
         //Borrow a book
         int _book_id = (int) jSpinner_BookID.getValue();
         int _member_id = (int) jSpinner_MemberID.getValue();
@@ -380,8 +379,6 @@ import javax.swing.border.Border;
                 jSpinner_MemberID.setValue(0);
                 jLabel_BookName_.setText("Book name");
                 jLabel_MemberFullName_.setText("Member Full-Name");
-                jLabel_Available.setText("Yes-or-No");
-                jLabel_Available.setForeground(new Color(51,102,255));
                 jDateChooser_BorrowDate.setDate(new Date());
                 jDateChooser_ReturnDate.setDate(new Date());
                 book_Exist = false;
@@ -393,16 +390,16 @@ import javax.swing.border.Border;
             JOptionPane.showMessageDialog(null,"Select Borrow date & Return date","Select Date", 2);
         }
  
-    }//GEN-LAST:event_jButton_Borrow_ActionPerformed
+    }//GEN-LAST:event_jButton_Return_ActionPerformed
 
-    private void jButton_Cancel_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_Cancel_MouseClicked
+    private void jButton_Lost_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_Lost_MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_Cancel_MouseClicked
+    }//GEN-LAST:event_jButton_Lost_MouseClicked
 
-    private void jButton_Cancel_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Cancel_ActionPerformed
+    private void jButton_Lost_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Lost_ActionPerformed
         // close the window
         this.dispose();
-    }//GEN-LAST:event_jButton_Cancel_ActionPerformed
+    }//GEN-LAST:event_jButton_Lost_ActionPerformed
     
     private void jLabel_BookName_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_BookName_MouseClicked
         //Display the book into card
@@ -439,6 +436,21 @@ import javax.swing.border.Border;
         //add a white border in the bottom of the member full name jLabel
         setBorderToJLabel(jLabel_MemberFullName_, Color.white);
     }//GEN-LAST:event_jLabel_MemberFullName_MouseExited
+
+    private void jTable_BorrowedBooks_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_BorrowedBooks_MouseClicked
+        // display the selected author
+
+        // get the selected row index
+        int index = jTable_BorrowedBooks_.getSelectedRow();
+
+        // get values
+        String id = jTable_BorrowedBooks_.getValueAt(index, 0).toString();
+        String firstName = jTable_BorrowedBooks_.getValueAt(index, 1).toString();
+        String lastName = jTable_BorrowedBooks_.getValueAt(index, 2).toString();
+        String expertise = jTable_BorrowedBooks_.getValueAt(index, 3).toString();
+        String about = jTable_BorrowedBooks_.getValueAt(index, 4).toString();
+
+    }//GEN-LAST:event_jTable_BorrowedBooks_MouseClicked
     
     //Create a little function to set border
     public void setBorderToJLabel(JLabel label, Color color){
@@ -528,17 +540,17 @@ import javax.swing.border.Border;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton_Borrow_;
-    private javax.swing.JButton jButton_Cancel_;
+    private javax.swing.JButton jButton_Lost_;
+    private javax.swing.JButton jButton_Return_;
+    private javax.swing.JComboBox<String> jComboBox_Status_;
     private com.toedter.calendar.JDateChooser jDateChooser_BorrowDate;
     private com.toedter.calendar.JDateChooser jDateChooser_ReturnDate;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel jLabel_Available;
     private javax.swing.JLabel jLabel_BookName_;
     private javax.swing.JLabel jLabel_CloseForm_;
     private javax.swing.JLabel jLabel_FormTitle;
@@ -546,10 +558,10 @@ import javax.swing.border.Border;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSpinner jSpinner_BookID;
     private javax.swing.JSpinner jSpinner_MemberID;
-    private javax.swing.JTable jTable_Authors_;
+    private javax.swing.JTable jTable_BorrowedBooks_;
     private javax.swing.JTextArea jTextArea_Note;
     // End of variables declaration//GEN-END:variables
 }
