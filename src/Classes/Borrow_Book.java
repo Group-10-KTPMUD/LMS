@@ -115,6 +115,38 @@ public class Borrow_Book {
         }     
     }
     
+    //Update a new borrowing
+    public void updateBorrow(int _book_id, int _member_id, String _status,String _borrow_date, String _return_date, String _note){
+        String updateQuery = "UPDATE `borrow_book` SET `status`= ?,`return_date`=?,`note`=? WHERE `book_id` =? AND `member_id`=? AND `borrow_date`=?";
+        try {
+            PreparedStatement ps = DB.getConnection().prepareStatement(updateQuery);
+            
+            
+            ps.setString(1, _status);
+            ps.setString(2, _return_date);
+            ps.setString(3, _note);
+            ps.setInt(4, _book_id);
+            ps.setInt(5, _member_id);
+            ps.setString(6, _borrow_date);
+            
+          
+            
+            
+            if(ps.executeUpdate() != 0)
+            {
+                JOptionPane.showMessageDialog(null, "Status Updated","Book Borrow", 1);
+            }
+            else
+            {             
+                JOptionPane.showMessageDialog(null, "Status Not Updated","Book Borrow", 2);          
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Borrow_Book.class.getName()).log(Level.SEVERE, null, ex);
+        }     
+    }
+    
+    
+    
     //Check if the book is available by using the quantity from table books
     public boolean checkBookAvailability(int _book_id){
         boolean availability = false;
@@ -163,31 +195,22 @@ public class Borrow_Book {
     }
     
     // function to populate an arrayList with borrowed/returned/lost books
-    public ArrayList<Borrow_Book> borrowedBooksList(String status)
+    public ArrayList<Borrow_Book> borrowedBooksList(String _status)
     {
-        ArrayList<Borrow_Book> borrowBList = new ArrayList<>();
-        String query;
-        switch(status){
-            case "all":
-                query = "";
-                break;
-                
-            case "borrowed":
-                query = "";
-                break;
-                
-            case "returned":
-                query = "";
-                break;
-            
-            case "lost":
-                query = "";
-                break;
+        // create a list
+        ArrayList<Borrow_Book> borrowedBookList = new ArrayList<>();
+        String query;  
+        
+        if(_status.equals(""))
+        {
+            query = "SELECT * FROM `borrow_book`";
+        }
+        else
+        {
+            query = "SELECT * FROM `borrow_book` WHERE `status` = '" + _status + "'";
         }
                
         try {
-            
-            query = "SELECT * FROM `books`";
             ResultSet rs = func.getData(query);                   
             Borrow_Book borrowBook;
             
@@ -195,12 +218,36 @@ public class Borrow_Book {
             {
                 borrowBook = new Borrow_Book(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4),
                         rs.getString(5), rs.getString(6));
-                borrowBList.add(borrowBook);
+                borrowedBookList.add(borrowBook);
             }
         } catch (SQLException ex) {
             Logger.getLogger(Borrow_Book.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        return borrowBList;
+        return borrowedBookList;
+    }
+    
+    // remove borrowed book using the book_id - member_id and borrowed date
+    // you can add a column id (make it as the key) to the table and delete using it
+    public void removeFromBorrowedTable(int _book_id, int _member_id, String _borrowed_date)
+    {
+        String removeQuery = "DELETE FROM `borrow_book` WHERE `book_id` =? AND `member_id`=? AND `borrow_date`=?";
+        try {
+            PreparedStatement ps = DB.getConnection().prepareStatement(removeQuery);
+            ps.setInt(1, _book_id);
+            ps.setInt(2, _member_id);
+            ps.setString(3, _borrowed_date);
+            
+            if(ps.executeUpdate() != 0)
+            {
+                JOptionPane.showMessageDialog(null, "Deleted Succesfully","remove", 1);
+            }
+            else
+            {             
+                JOptionPane.showMessageDialog(null, "Not Deleted","remove", 2);          
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Borrow_Book.class.getName()).log(Level.SEVERE, null, ex);
+        }       
     }
 }

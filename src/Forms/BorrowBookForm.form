@@ -168,9 +168,9 @@
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="103" groupAlignment="3" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jButton_Borrow_" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="jButton_Cancel_" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="jButton_Cancel_" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               </Group>
