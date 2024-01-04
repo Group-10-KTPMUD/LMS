@@ -405,19 +405,19 @@ public class EditMemberForm extends javax.swing.JFrame {
         String gender = jComboBox_Gender.getSelectedItem().toString();
         
         // check if the text fields are empty
-        if(fname.isEmpty())
+        if(fname.trim().isEmpty()) // check the first name
         {
             jLabel_EmptyFirstName_.setVisible(true);
         }
-        else if(lname.isEmpty())
+        else if(lname.trim().isEmpty()) // check the last name
         {
             jLabel_EmptyLastName_.setVisible(true);
         }
-        else if(phone.isEmpty())
+        else if(phone.trim().isEmpty()) // check the phone
         {
             jLabel_EmptyPhone_.setVisible(true);
         }
-        else
+        else // if the textfields are not empty
         {
             byte[] img = null;
             if(imagePath != null)

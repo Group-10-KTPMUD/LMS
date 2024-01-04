@@ -7,39 +7,43 @@ import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 
-public class ManageAuthorsForm extends javax.swing.JFrame {
 
-    //Creates Manage Author form
+public class ManageUsersForm extends javax.swing.JFrame {
+
+    //Creates Manage User form
      
+    Classes.Users user = new Classes.Users();
     
-    Classes.Author author = new Classes.Author();
-    
-    public ManageAuthorsForm() {
+    public ManageUsersForm() {
         initComponents();
         
         // center the form
         this.setLocationRelativeTo(null);
         
-        // add a gray border to the panel
-        Border panelHeaderBorder = BorderFactory.createMatteBorder(3,3,3,3,new Color(1, 50, 67));
+        // add border to the panel
+        Border panelHeaderBorder = BorderFactory.createMatteBorder(3,3,3,3,new Color(242,217,132));
         jPanel1.setBorder(panelHeaderBorder);
         
         // display image in the top
         Classes.Func_Class func = new Classes.Func_Class();
-        func.displayImage(75, 60,null, "/Images/notepad.png", jLabel_FormTitle);
+        func.displayImage(75, 60,null, "/Images/user.png", jLabel_FormTitle);
         
         // customize the jtable
-        func.customTable(jTable_Authors_);
+        func.customTable(jTable_Users_);
         
         // customize the jtable header row
-        func.customTableHeader(jTable_Authors_, new Color(34, 167, 240), 16);
+        func.customTableHeader(jTable_Users_, new Color(34, 167, 240), 16);
         
         // hide the jlabel "empty name massage"
-        jLabel_EmptyFirstName_.setVisible(false);
-        jLabel_EmptyLastName_.setVisible(false);
+        // you can make the lables color white
+        // so they will not push the other element down
+        jLabel_EmptyFirstName_.setForeground(Color.white);
+        jLabel_EmptyLastName_.setForeground(Color.white);
+        jLabel_EmptyUserName_.setForeground(Color.white);
+        jLabel_EmptyPassword_.setForeground(Color.white);
         
-        // populate Jtable With Author
-        populateJtableWithAuthors();
+        // populate Jtable With Users
+        populateJtableWithUsers();
     }
 
     @SuppressWarnings("unchecked")
@@ -59,16 +63,20 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
         jButton_Edit_ = new javax.swing.JButton();
         jButton_Delete_ = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable_Authors_ = new javax.swing.JTable();
+        jTable_Users_ = new javax.swing.JTable();
         jLabel_EmptyFirstName_ = new javax.swing.JLabel();
         jLabel_EmptyLastName_ = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jTextField_LastName = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField_Expertise = new javax.swing.JTextField();
+        jTextField_Username = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea_About = new javax.swing.JTextArea();
+        jLabel6 = new javax.swing.JLabel();
+        jPasswordField_1 = new javax.swing.JPasswordField();
+        jPasswordField_2 = new javax.swing.JPasswordField();
+        jLabel_EmptyUserName_ = new javax.swing.JLabel();
+        jLabel_EmptyPassword_ = new javax.swing.JLabel();
+        jCheckBox_SetAdmin = new javax.swing.JCheckBox();
 
         jButton2.setBackground(new java.awt.Color(240, 240, 240));
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -85,11 +93,10 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
         setUndecorated(true);
 
-        jLabel_FormTitle.setBackground(new java.awt.Color(1, 50, 67));
+        jLabel_FormTitle.setBackground(new java.awt.Color(242, 217, 132));
         jLabel_FormTitle.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel_FormTitle.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_FormTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel_FormTitle.setText("Manage Authors");
+        jLabel_FormTitle.setText("Manage Users");
         jLabel_FormTitle.setOpaque(true);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -105,9 +112,8 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jLabel_CloseForm_.setBackground(new java.awt.Color(1, 50, 67));
+        jLabel_CloseForm_.setBackground(new java.awt.Color(242, 217, 132));
         jLabel_CloseForm_.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
-        jLabel_CloseForm_.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_CloseForm_.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel_CloseForm_.setText("X");
         jLabel_CloseForm_.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -125,6 +131,7 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
         jLabel2.setText("First Name:");
 
         jTextField_ID.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jTextField_ID.setEnabled(false);
 
         jTextField_FirstName.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
 
@@ -160,8 +167,8 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
             }
         });
 
-        jTable_Authors_.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTable_Authors_.setModel(new javax.swing.table.DefaultTableModel(
+        jTable_Users_.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTable_Users_.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -169,12 +176,12 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
 
             }
         ));
-        jTable_Authors_.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTable_Users_.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable_Authors_MouseClicked(evt);
+                jTable_Users_MouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable_Authors_);
+        jScrollPane1.setViewportView(jTable_Users_);
 
         jLabel_EmptyFirstName_.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel_EmptyFirstName_.setForeground(new java.awt.Color(253, 0, 0));
@@ -195,22 +202,55 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jLabel3.setText("Last Name");
+        jLabel3.setText("Last Name:");
 
         jTextField_LastName.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jLabel4.setText("Expertise");
+        jLabel4.setText("Username:");
 
-        jTextField_Expertise.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jTextField_Username.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jLabel5.setText("About");
+        jLabel5.setText("Password:");
 
-        jTextArea_About.setColumns(20);
-        jTextArea_About.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jTextArea_About.setRows(5);
-        jScrollPane2.setViewportView(jTextArea_About);
+        jLabel6.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jLabel6.setText("Retype Password:");
+
+        jPasswordField_1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPasswordField_1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordField_1ActionPerformed(evt);
+            }
+        });
+
+        jPasswordField_2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        jLabel_EmptyUserName_.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel_EmptyUserName_.setForeground(new java.awt.Color(253, 0, 0));
+        jLabel_EmptyUserName_.setText("* enter the username");
+        jLabel_EmptyUserName_.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_EmptyUserName_MouseClicked(evt);
+            }
+        });
+
+        jLabel_EmptyPassword_.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel_EmptyPassword_.setForeground(new java.awt.Color(253, 0, 0));
+        jLabel_EmptyPassword_.setText("* enter the password");
+        jLabel_EmptyPassword_.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_EmptyPassword_MouseClicked(evt);
+            }
+        });
+
+        jCheckBox_SetAdmin.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBox_SetAdmin.setText("Make This User an Admin");
+        jCheckBox_SetAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox_SetAdminActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -218,13 +258,7 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton_Add_, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton_Edit_, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton_Delete_, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -233,14 +267,35 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel_EmptyLastName_)
-                    .addComponent(jLabel_EmptyFirstName_)
-                    .addComponent(jScrollPane2)
-                    .addComponent(jTextField_Expertise)
-                    .addComponent(jTextField_LastName)
-                    .addComponent(jTextField_FirstName))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 556, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jTextField_FirstName, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTextField_LastName, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTextField_Username, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPasswordField_1, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPasswordField_2, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(6, 6, 6)
+                            .addComponent(jLabel_EmptyPassword_, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)))
+                    .addComponent(jLabel6)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel_EmptyUserName_)
+                            .addComponent(jLabel_EmptyLastName_)
+                            .addComponent(jLabel_EmptyFirstName_)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton_Add_, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton_Edit_, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addComponent(jCheckBox_SetAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton_Delete_, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -274,12 +329,22 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField_Expertise, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23)
+                        .addComponent(jTextField_Username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel_EmptyUserName_)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPasswordField_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel_EmptyPassword_)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPasswordField_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jCheckBox_SetAdmin)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton_Add_, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton_Edit_, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -297,144 +362,242 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel_CloseForm_MouseClicked
 
     private void jButton_Add_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Add_ActionPerformed
-        // add a new author
+        // add a new user
         String fname = jTextField_FirstName.getText();
         String lname = jTextField_LastName.getText();
-        String expertise = jTextField_Expertise.getText();
-        String about = jTextArea_About.getText();
+        String username = jTextField_Username.getText();
+        String password_1 = String.valueOf(jPasswordField_1.getPassword());
+        String password_2 = String.valueOf(jPasswordField_2.getPassword());
+        String userType = "user";
+        
+        if(jCheckBox_SetAdmin.isSelected()) 
+        {
+            userType = "admin";
+        }
         
         // check if the text fields are empty
         if(fname.trim().isEmpty()) // check the first name
         {
-            jLabel_EmptyFirstName_.setVisible(true);
+            jLabel_EmptyFirstName_.setForeground(Color.red);
         }
         else if(lname.trim().isEmpty()) // check the last name
         {
-            jLabel_EmptyLastName_.setVisible(true);
+            jLabel_EmptyLastName_.setForeground(Color.red);
         }
+        else if(username.trim().isEmpty()) // check the username
+        {
+            //jLabel_EmptyUserName_.setVisible(true);
+            jLabel_EmptyUserName_.setForeground(Color.red);
+        }
+        else if(password_1.trim().isEmpty()) // check the password
+        {
+            //jLabel_EmptyPassword_.setVisible(true);
+            jLabel_EmptyPassword_.setForeground(Color.red);
+        }
+        else if(!password_1.equals(password_2)) // check the password_1 doesn't equal the password_2
+        {
+            JOptionPane.showMessageDialog(null, "Retype The Correct Password","password error", 0);          
+        }
+        
+        // we need to check if this username already exists
+        else if(user.checkUsernameExists(0, username))
+        {
+            JOptionPane.showMessageDialog(null, "This Username Already Exists Try Another One","Username Error", 0);
+        }
+        
         else
         {
-            author.addAuthor(fname, lname, expertise, about);
+            user.addUser(fname, lname, username, password_1, userType);
+            // refresh the Jtable Users
+            populateJtableWithUsers();
             
-            // refresh the Jtable Genres
-            // populateJtableWithGenres();
-
+            // clear text form the teaxtfields
+            jTextField_ID.setText("");
+            jTextField_FirstName.setText("");
+            jTextField_LastName.setText("");
+            jTextField_Username.setText("");
+            jPasswordField_1.setText("");
+            jPasswordField_2.setText("");
+            jCheckBox_SetAdmin.setSelected(false);
         }
     }//GEN-LAST:event_jButton_Add_ActionPerformed
 
     private void jButton_Edit_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Edit_ActionPerformed
-        // edit the selected author
+        // edit user info
+        
         String fname = jTextField_FirstName.getText();
         String lname = jTextField_LastName.getText();
-        String expertise = jTextField_Expertise.getText();
-        String about = jTextArea_About.getText();
+        String username = jTextField_Username.getText();
+        String password_1 = String.valueOf(jPasswordField_1.getPassword());
+        String password_2 = String.valueOf(jPasswordField_2.getPassword());
+        String userType = "user";
+        
+        if(jCheckBox_SetAdmin.isSelected()) 
+        {
+            userType = "admin";
+        }
         
         // check if the text fields are empty
-        if(fname.isEmpty())
+        if(fname.trim().isEmpty()) // check the first name
         {
-            jLabel_EmptyFirstName_.setVisible(true);
+            jLabel_EmptyFirstName_.setForeground(Color.red);
         }
-        else if(lname.isEmpty())
+        else if(lname.trim().isEmpty()) // check the last name
         {
-            jLabel_EmptyLastName_.setVisible(true);
+            jLabel_EmptyLastName_.setForeground(Color.red);
         }
+        else if(username.trim().isEmpty()) // check the username
+        {
+            //jLabel_EmptyUserName_.setVisible(true);
+            jLabel_EmptyUserName_.setForeground(Color.red);
+        }
+        else if(password_1.trim().isEmpty()) // check the password
+        {
+            //jLabel_EmptyPassword_.setVisible(true);
+            jLabel_EmptyPassword_.setForeground(Color.red);
+        }
+        else if(!password_1.equals(password_2)) // check the password_1 doesn't equal the password_2
+        {
+            JOptionPane.showMessageDialog(null, "Retype The Correct Password","password error", 0);          
+        }
+        
         else
         {
             try
             {
-                int id = Integer.parseInt(jTextField_ID.getText());
-                author.editAuthor(id, fname, lname, expertise, about);
+                // we need to check if this username already exists
+                // check if it's not also the current user (the user selected from jtable)
                 
-                // refresh the Jtable Genres
-                // populateJtableWithGenres();
+                int id = Integer.parseInt(jTextField_ID.getText());
+                
+                if(user.checkUsernameExists(id, username))
+                {
+                    JOptionPane.showMessageDialog(null, "This Username Already Exists Try Another One","Username Error", 0);
+                }
+                else 
+                {
+                    user.editUser(id, fname, lname, username, password_1, userType);
+            
+                    // refresh the Jtable Users
+                    populateJtableWithUsers();
+                    
+                    // clear text form the teaxtfields
+                    jTextField_ID.setText("");
+                    jTextField_FirstName.setText("");
+                    jTextField_LastName.setText("");
+                    jTextField_Username.setText("");
+                    jPasswordField_1.setText("");
+                    jPasswordField_2.setText("");
+                    jCheckBox_SetAdmin.setSelected(false);
+                }  
             }
             catch(NumberFormatException ex)
             {
-                JOptionPane.showMessageDialog(null, "Invalid Author ID - " + ex.getMessage(),"error", 0);
+            JOptionPane.showMessageDialog(null, "Select The User You Want To Edit From The Table","No ID selected", 0);
             }
+
         }
+        
     }//GEN-LAST:event_jButton_Edit_ActionPerformed
 
     private void jButton_Delete_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Delete_ActionPerformed
-        // delete the selected author
+        // delete the selected user
         try
             {
                 int id = Integer.parseInt(jTextField_ID.getText());
                 
-                // show confirmation message before removing the author
-                int confirmation = JOptionPane.showConfirmDialog(null,"Are You Sure You Want To Delete This Author?","Confirmation Box",JOptionPane.YES_NO_OPTION);
+                // show confirmation message before removing the user
+                int confirmation = JOptionPane.showConfirmDialog(null,"Are You Sure You Want To Delete This User?","Confirmation Box",JOptionPane.YES_NO_OPTION);
                 if (confirmation==JOptionPane.YES_OPTION){
-                author.removeAuthor(id);
+                user.removeUser(id);
                 }
+                
+                // refresh the Jtable Users
+                populateJtableWithUsers();
                 
                 // clear text form the teaxtfields
                 jTextField_ID.setText("");
                 jTextField_FirstName.setText("");
                 jTextField_LastName.setText("");
-                jTextField_Expertise.setText("");
-                jTextArea_About.setText("");
+                jTextField_Username.setText("");
+                jPasswordField_1.setText("");
+                jPasswordField_2.setText("");
+                jCheckBox_SetAdmin.setSelected(false);
                 
             }
             catch(NumberFormatException ex)
             {
-                JOptionPane.showMessageDialog(null, "Invalid Author ID - " + ex.getMessage(),"error", 0);
+                JOptionPane.showMessageDialog(null, "Invalid User ID - " + ex.getMessage(),"error", 0);
             }
     }//GEN-LAST:event_jButton_Delete_ActionPerformed
 
-    private void jTable_Authors_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_Authors_MouseClicked
+    private void jTable_Users_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_Users_MouseClicked
         // display the selected author
         
         // get the selected row index
-        int index = jTable_Authors_.getSelectedRow();
+        int index = jTable_Users_.getSelectedRow();
         
         // get values
-        String id = jTable_Authors_.getValueAt(index, 0).toString();
-        String firstName = jTable_Authors_.getValueAt(index, 1).toString();
-        String lastName = jTable_Authors_.getValueAt(index, 2).toString();
-        String expertise = jTable_Authors_.getValueAt(index, 3).toString();
-        String about = jTable_Authors_.getValueAt(index, 4).toString();
+        String id = jTable_Users_.getValueAt(index, 0).toString();
+        String firstName = jTable_Users_.getValueAt(index, 1).toString();
+        String lastName = jTable_Users_.getValueAt(index, 2).toString();
+        String username = jTable_Users_.getValueAt(index, 3).toString();
+        String password = jTable_Users_.getValueAt(index, 4).toString();
+        String userType = jTable_Users_.getValueAt(index, 5).toString();
         
         //show data in textfields
         jTextField_ID.setText(id);
         jTextField_FirstName.setText(firstName);
         jTextField_LastName.setText(lastName);
-        jTextField_Expertise.setText(expertise);
-        jTextArea_About.setText(about);
-    }//GEN-LAST:event_jTable_Authors_MouseClicked
+        jTextField_Username.setText(username);
+        jPasswordField_1.setText(password);
+        jPasswordField_2.setText(password);
+        
+        if(userType.equals("admin"))
+        {
+            jCheckBox_SetAdmin.setSelected(true);
+        }
+        else
+        {
+            jCheckBox_SetAdmin.setSelected(false);
+        }
+        
+    }//GEN-LAST:event_jTable_Users_MouseClicked
     
-    // create a function to populate the jtable with author
-    public void populateJtableWithAuthors()
+    // create a function to populate the jtable with user
+    public void populateJtableWithUsers()
     {
 
-        ArrayList<Classes.Author> authorsList = author.authorsList();
+        ArrayList<Classes.Users> usersList = user.usersList();
         
         // jTable columns
-        String[] colNames = {"ID", "F-Name", "L-Name", "Expertise", "About"};
+        String[] colNames = {"ID", "F-Name", "L-Name", "U-Name", "Pass", "Type"};
         
         // row
-        Object[][] rows = new Object[authorsList.size()][colNames.length];
+        Object[][] rows = new Object[usersList.size()][colNames.length];
         
-        for(int i = 0; i < authorsList.size(); i++)
+        for(int i = 0; i < usersList.size(); i++)
         {
-            rows[i][0] = authorsList.get(i).getId();
-            rows[i][1] = authorsList.get(i).getFirstName();
-            rows[i][2] = authorsList.get(i).getLastName();
-            rows[i][3] = authorsList.get(i).getField_Of_Expertise();
-            rows[i][4] = authorsList.get(i).getAbout();
+            rows[i][0] = usersList.get(i).getId();
+            rows[i][1] = usersList.get(i).getFirstname();
+            rows[i][2] = usersList.get(i).getLastname();
+            rows[i][3] = usersList.get(i).getUsername();
+            rows[i][4] = usersList.get(i).getPassword();
+            rows[i][5] = usersList.get(i).getUserType();
         }
         
         DefaultTableModel model = new DefaultTableModel(rows, colNames);
-        jTable_Authors_.setModel(model);
+        jTable_Users_.setModel(model);
         
     }
     
     private void jLabel_EmptyFirstName_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_EmptyFirstName_MouseClicked
         // hide this jlabel on click
-        jLabel_EmptyFirstName_.setVisible(false);
+        jLabel_EmptyFirstName_.setForeground(Color.white);
     }//GEN-LAST:event_jLabel_EmptyFirstName_MouseClicked
 
     private void jLabel_EmptyLastName_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_EmptyLastName_MouseClicked
-        jLabel_EmptyLastName_.setVisible(false);
+        jLabel_EmptyLastName_.setForeground(Color.white);
     }//GEN-LAST:event_jLabel_EmptyLastName_MouseClicked
 
     private void jTextField_AboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_AboutActionPerformed
@@ -444,6 +607,22 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
     private void jButton_Add_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_Add_MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton_Add_MouseClicked
+
+    private void jPasswordField_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField_1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField_1ActionPerformed
+
+    private void jLabel_EmptyUserName_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_EmptyUserName_MouseClicked
+        jLabel_EmptyUserName_.setForeground(Color.white);
+    }//GEN-LAST:event_jLabel_EmptyUserName_MouseClicked
+
+    private void jLabel_EmptyPassword_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_EmptyPassword_MouseClicked
+        jLabel_EmptyPassword_.setForeground(Color.white);
+    }//GEN-LAST:event_jLabel_EmptyPassword_MouseClicked
+
+    private void jCheckBox_SetAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_SetAdminActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox_SetAdminActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -460,14 +639,18 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManageAuthorsForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageUsersForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManageAuthorsForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageUsersForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManageAuthorsForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageUsersForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManageAuthorsForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageUsersForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -476,7 +659,7 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManageAuthorsForm().setVisible(true);
+                new ManageUsersForm().setVisible(true);
             }
         });
     }
@@ -486,24 +669,28 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton_Add_;
     private javax.swing.JButton jButton_Delete_;
     private javax.swing.JButton jButton_Edit_;
+    private javax.swing.JCheckBox jCheckBox_SetAdmin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel_CloseForm_;
     private javax.swing.JLabel jLabel_EmptyFirstName_;
     private javax.swing.JLabel jLabel_EmptyLastName_;
+    private javax.swing.JLabel jLabel_EmptyPassword_;
+    private javax.swing.JLabel jLabel_EmptyUserName_;
     private javax.swing.JLabel jLabel_FormTitle;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPasswordField jPasswordField_1;
+    private javax.swing.JPasswordField jPasswordField_2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable_Authors_;
-    private javax.swing.JTextArea jTextArea_About;
+    private javax.swing.JTable jTable_Users_;
     private javax.swing.JTextField jTextField_About;
-    private javax.swing.JTextField jTextField_Expertise;
     private javax.swing.JTextField jTextField_FirstName;
     private javax.swing.JTextField jTextField_ID;
     private javax.swing.JTextField jTextField_LastName;
+    private javax.swing.JTextField jTextField_Username;
     // End of variables declaration//GEN-END:variables
 }

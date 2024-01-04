@@ -8,10 +8,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Champion T
- */
 public class Author {
     private int id;
     private String firstName;

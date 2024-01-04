@@ -9,10 +9,6 @@ import javax.swing.JOptionPane;
 import java.sql.ResultSet;
 import java.util.HashMap;
 
-/**
- *
- * @author Champion T
- */
 public class Genre {
     private int id;
     private String name;

@@ -268,7 +268,7 @@ public class ManageGenresForm extends javax.swing.JFrame {
         String name = jTextField_Name.getText();
         
         // check if the text field is empty
-        if(name.isEmpty())
+        if(name.trim().isEmpty())
         {
             jLabel_EmptyName_.setVisible(true);
         } else
@@ -294,6 +294,12 @@ public class ManageGenresForm extends javax.swing.JFrame {
             {
                 int id = Integer.parseInt(jTextField_ID.getText());
                 genre.removeGenre(id);
+                
+                // show confirmation message before removing a genre
+                int confirmation = JOptionPane.showConfirmDialog(null,"Are You Sure You Want To Delete This Genre?","Confirmation Box",JOptionPane.YES_NO_OPTION);
+                if (confirmation==JOptionPane.YES_OPTION){
+                genre.removeGenre(id);
+                }
                 
                 // refresh the Jtable Genres
                 populateJtableWithGenres();
