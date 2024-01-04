@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 
+
 public class ManageAuthorsForm extends javax.swing.JFrame {
 
     //Creates Manage Author form
