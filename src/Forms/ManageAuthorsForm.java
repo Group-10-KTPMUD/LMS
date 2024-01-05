@@ -313,12 +313,16 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
         {
             jLabel_EmptyLastName_.setVisible(true);
         }
-        else
+        else // if the text field are not empty
         {
             author.addAuthor(fname, lname, expertise, about);
             
-            // refresh the Jtable Genres
-            // populateJtableWithGenres();
+            // refresh the Jtable Authors
+            populateJtableWithAuthors();
+            
+            //hide the JLabel
+            jLabel_EmptyFirstName_.setVisible(false);
+            jLabel_EmptyLastName_.setVisible(false);
 
         }
     }//GEN-LAST:event_jButton_Add_ActionPerformed
@@ -331,11 +335,11 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
         String about = jTextArea_About.getText();
         
         // check if the text fields are empty
-        if(fname.isEmpty())
+        if(fname.trim().isEmpty())
         {
             jLabel_EmptyFirstName_.setVisible(true);
         }
-        else if(lname.isEmpty())
+        else if(lname.trim().isEmpty())
         {
             jLabel_EmptyLastName_.setVisible(true);
         }
@@ -346,8 +350,13 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
                 int id = Integer.parseInt(jTextField_ID.getText());
                 author.editAuthor(id, fname, lname, expertise, about);
                 
-                // refresh the Jtable Genres
-                // populateJtableWithGenres();
+                // refresh the Jtable Authors
+            populateJtableWithAuthors();
+            
+            //hide the JLabel
+            jLabel_EmptyFirstName_.setVisible(false);
+            jLabel_EmptyLastName_.setVisible(false);
+
             }
             catch(NumberFormatException ex)
             {
@@ -367,7 +376,13 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
                 if (confirmation==JOptionPane.YES_OPTION){
                 author.removeAuthor(id);
                 }
-                
+                // refresh the Jtable Authors
+                populateJtableWithAuthors();
+            
+                //hide the JLabel
+                jLabel_EmptyFirstName_.setVisible(false);
+                jLabel_EmptyLastName_.setVisible(false);
+
                 // clear text form the teaxtfields
                 jTextField_ID.setText("");
                 jTextField_FirstName.setText("");

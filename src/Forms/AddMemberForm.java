@@ -167,6 +167,14 @@ public class AddMemberForm extends javax.swing.JFrame {
         jLabel4.setText("Phone number:");
 
         jTextField_Phone.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jTextField_Phone.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField_PhoneKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField_PhoneKeyTyped(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jLabel5.setText("Email:");
@@ -374,21 +382,33 @@ public class AddMemberForm extends javax.swing.JFrame {
        
         //select picture from computer
         String path = func.selectImage();
+        if(!path.equals("")){
         jLabel_ImagePath.setText(path);
         imagePath = path;
-        
+        }
     }//GEN-LAST:event_jButton_SelectProfilePicture_ActionPerformed
 
     private void jButton_Add_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_Add_MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton_Add_MouseClicked
 
-    public static void main(String args[]) {
+    private void jTextField_PhoneKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_PhoneKeyPressed
+        
+    }//GEN-LAST:event_jTextField_PhoneKeyPressed
+
+    private void jTextField_PhoneKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_PhoneKeyTyped
+        // allow only numbers on jtextField
+        if(!Character.isDigit(evt.getKeyChar())){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField_PhoneKeyTyped
+
+    /*public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+         
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -415,13 +435,13 @@ public class AddMemberForm extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the form 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new AddMemberForm().setVisible(true);
             }
         });
-    }
+    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;

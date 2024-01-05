@@ -197,6 +197,11 @@ public class EditMemberForm extends javax.swing.JFrame {
         jLabel4.setText("Phone number:");
 
         jTextField_Phone.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jTextField_Phone.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField_PhoneKeyTyped(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jLabel5.setText("Email:");
@@ -427,8 +432,8 @@ public class EditMemberForm extends javax.swing.JFrame {
                     Path path = Paths.get(imagePath);
                     img = Files.readAllBytes(path);
                     member.editMember(id,fname, lname, phone, email, gender, img);
-                } catch(IOException ex) {
-                    Logger.getLogger(EditMemberForm.class.getName()).log(Level.SEVERE, null, ex);
+                } catch(IOException | NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, " Make Sure To Enter The ID & Select a Profile Pictur","No ID or Picture Selected", 2);
                 }
             }
             else
@@ -525,6 +530,13 @@ public class EditMemberForm extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_jButton_SearchActionPerformed
+
+    private void jTextField_PhoneKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_PhoneKeyTyped
+        // allow only numbers on jtextField
+        if(!Character.isDigit(evt.getKeyChar())){
+            evt.consume();
+        }       
+    }//GEN-LAST:event_jTextField_PhoneKeyTyped
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

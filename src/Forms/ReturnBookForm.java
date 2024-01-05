@@ -369,6 +369,9 @@ import javax.swing.table.DefaultTableModel;
 
     private void jButton_Return_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Return_ActionPerformed
         //Return a book
+        //we will update the return date the note
+        //NOTE: If you change a book status from LOST to RETURNED you need to update the quantity 
+        // or you can prevent the user from changing the status when it's set to lost 
         int _book_id = (int) jSpinner_BookID.getValue();
         int _member_id = (int) jSpinner_MemberID.getValue();
         String _note = jTextArea_Note.getText();
@@ -563,6 +566,17 @@ import javax.swing.table.DefaultTableModel;
             String _issued_date = jTable_BorrowedBooks_.getValueAt(index, 3).toString();
         
             borrow.removeFromBorrowedTable(_book_id, _member_id, _issued_date);
+            
+            //clear field
+            jSpinner_BookID.setValue(0);
+            jSpinner_MemberID.setValue(0);
+            jLabel_BookName_.setText("Book Name");
+            jLabel_MemberFullName_.setText("Member Full-Name");
+            jDateChooser_BorrowDate.setDate(new Date());
+            jDateChooser_ReturnDate.setDate(new Date());
+            jTextArea_Note.setText("");
+            
+            
         }
         catch(Exception ex)
         {

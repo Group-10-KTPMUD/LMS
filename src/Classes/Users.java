@@ -178,7 +178,8 @@ public class Users {
         ArrayList<Users> uList = new ArrayList<>();
                
         try {
-            ResultSet rs = func.getData("SELECT * FROM `users_table`");                   
+            //don"t show the owner data 
+            ResultSet rs = func.getData("SELECT * FROM `users_table` where user_type <> 'owner'");                
             Users user;
             
             while(rs.next())
@@ -191,5 +192,21 @@ public class Users {
         }
         
         return uList;
+    }
+    // we will create function to allow the user to login
+    public Users tryLogin(String _username, String _password)
+    {
+        ResultSet rs = func.getData("SELECT * FROM `users_table` where username = '"+_username+"' and password = '"+_password+"'");                   
+        Users user = null;
+            
+        try {
+            if(rs.next())
+            {
+                user = new Users(rs.getInt("id"), rs.getString("firstName"), rs.getString("lastName"), rs.getString("username"), rs.getString("password"), rs.getString("user_type"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Author.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return user;
     }
 }

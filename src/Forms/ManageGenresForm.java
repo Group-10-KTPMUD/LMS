@@ -257,6 +257,10 @@ public class ManageGenresForm extends javax.swing.JFrame {
         {
             genre.addGenre(name);
             
+            
+            // hide the jlabel "empty name massage"
+             jLabel_EmptyName_.setVisible(false);
+            
             // refresh the Jtable Genres
             populateJtableWithGenres();
 
@@ -278,6 +282,9 @@ public class ManageGenresForm extends javax.swing.JFrame {
                 int id = Integer.parseInt(jTextField_ID.getText());
                 genre.editGenre(id, name);
                 
+                // hide the jlabel "empty name massage"
+                 jLabel_EmptyName_.setVisible(false);
+                 
                 // refresh the Jtable Genres
                 populateJtableWithGenres();
             }
@@ -301,6 +308,8 @@ public class ManageGenresForm extends javax.swing.JFrame {
                 genre.removeGenre(id);
                 }
                 
+                // hide the jlabel "empty name massage"
+                jLabel_EmptyName_.setVisible(false);
                 // refresh the Jtable Genres
                 populateJtableWithGenres();
                 

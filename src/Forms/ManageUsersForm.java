@@ -318,7 +318,7 @@ public class ManageUsersForm extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField_FirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel_EmptyFirstName_)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -350,7 +350,7 @@ public class ManageUsersForm extends javax.swing.JFrame {
                             .addComponent(jButton_Edit_, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton_Delete_, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 23, Short.MAX_VALUE))
+                .addGap(0, 21, Short.MAX_VALUE))
         );
 
         pack();
@@ -419,6 +419,9 @@ public class ManageUsersForm extends javax.swing.JFrame {
             jPasswordField_1.setText("");
             jPasswordField_2.setText("");
             jCheckBox_SetAdmin.setSelected(false);
+            
+            //hide the jlabel
+            hideLabels();
         }
     }//GEN-LAST:event_jButton_Add_ActionPerformed
 
@@ -489,6 +492,9 @@ public class ManageUsersForm extends javax.swing.JFrame {
                     jPasswordField_1.setText("");
                     jPasswordField_2.setText("");
                     jCheckBox_SetAdmin.setSelected(false);
+                    
+                    //hide the jlabel
+                    hideLabels();
                 }  
             }
             catch(NumberFormatException ex)
@@ -523,7 +529,8 @@ public class ManageUsersForm extends javax.swing.JFrame {
                 jPasswordField_1.setText("");
                 jPasswordField_2.setText("");
                 jCheckBox_SetAdmin.setSelected(false);
-                
+                //hide the jlabel
+                hideLabels();
             }
             catch(NumberFormatException ex)
             {
@@ -563,7 +570,15 @@ public class ManageUsersForm extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jTable_Users_MouseClicked
-    
+    //create method to hide all jlabels message (red message)
+    public void hideLabels()
+    {
+        jLabel_EmptyFirstName_.setForeground(Color.white);
+        jLabel_EmptyLastName_.setForeground(Color.white);
+        jLabel_EmptyPassword_.setForeground(Color.white);
+        jLabel_EmptyUserName_.setForeground(Color.white);
+        
+    }
     // create a function to populate the jtable with user
     public void populateJtableWithUsers()
     {

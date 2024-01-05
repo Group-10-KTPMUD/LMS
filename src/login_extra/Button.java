@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.Shape;
 import javax.swing.JButton;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import login_animation.FancyBorderRadius;
 
@@ -41,6 +42,10 @@ public class Button extends JButton {
     public void setBounds(int i, int i1, int i2, int i3) {
         super.setBounds(i, i1, i2, i3);
         shape = new FancyBorderRadius(getWidth(), getHeight(), "15% 85% 63% 37% / 38% 29% 71% 62%").getShape();
+    }
+
+    public void getBorder(Border login) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

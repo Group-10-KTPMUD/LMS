@@ -1,18 +1,22 @@
 package Forms;
 
 import Classes.DB;
+import Classes.Users;
 import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+
 public class Login extends javax.swing.JFrame {
 
     public Login() {
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
+        
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -47,6 +51,14 @@ public class Login extends javax.swing.JFrame {
 
         cmdLogin.setForeground(new java.awt.Color(231, 231, 231));
         cmdLogin.setText("SIGN IN");
+        cmdLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cmdLoginMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cmdLoginMouseExited(evt);
+            }
+        });
         cmdLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmdLoginActionPerformed(evt);
@@ -118,11 +130,7 @@ public class Login extends javax.swing.JFrame {
         String username = txtUser.getText();
         String password = String.valueOf(txtPassword.getPassword());
         
-        ResultSet rs;
-        PreparedStatement ps;
-        
-        //The select query
-        String query = "SELECT * FROM `users` WHERE `username` = ? AND `password` = ?";
+       
         //Check if the fields are empty
         if(username.trim().equals("") && password.trim().equals("")){
             JOptionPane.showMessageDialog(null, "Username and Password are BLANK !", "ERROR", 2);
@@ -131,32 +139,52 @@ public class Login extends javax.swing.JFrame {
         } else if(password.trim().equals("")){
             JOptionPane.showMessageDialog(null, "Password are BLANK !", "ERROR", 2);
         } else{
-            try {
-                //get the connection from class DB
-                ps = DB.getConnection().prepareStatement(query);
-                ps.setString(1, username);
-                ps.setString(2, password);
-                
-                rs = ps.executeQuery();
-                
+                Classes.Users user =new Classes.Users().tryLogin(username, password);
                 //Check if the user is exist                
-                if(rs.next()){
+                if(user!=null){
+                    //display the dashboard 
+                    // if usertype is admin show all menu elements
+                    // if usertype is simple user hide circulation and Manage Users
+                    
                     Dashboard dash_f = new Dashboard();
+                    if(user.getUserType().equals("user")){
+                        dash_f.jLabel1_Circulation.setVisible(false);
+                        dash_f.jButton_BorrowBook_.setVisible(false);
+                        dash_f.jButton_ReturnBook_.setVisible(false);
+                        dash_f.jButton_Manage_users.setVisible(false);
+                        dash_f.jButton_Gach.setVisible(false);
+                         // Show Welcome Back User
+                         dash_f.jLabel_Welcome_Back.setText("Welcome Back ["+user.getUsername()+" ]");
+                        
+                    }else if(user.getUserType().equals("admin")){
+                        dash_f.jButton_Manage_users.setVisible(false);
+                    }
+                    // Show Welcome Back User
+                    dash_f.jLabel_Welcome_Back.setText("Welcome Back "+user.getUsername());
                     dash_f.setVisible(true);
                     this.dispose();
                 } else{
                     JOptionPane.showMessageDialog(null, "Incorrect Username or Password !", "ERROR", 2);
                 }
                                
-            } catch (SQLException ex) {
-                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
     }//GEN-LAST:event_cmdLoginActionPerformed
 
     private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUserActionPerformed
+
+    private void cmdLoginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmdLoginMouseEntered
+        // Change the cmdLogin Background
+        cmdLogin.setBackground(new Color(231,231,231));
+        
+    }//GEN-LAST:event_cmdLoginMouseEntered
+
+    private void cmdLoginMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmdLoginMouseExited
+        // Change the cmdLogin Background when mouse exit
+        cmdLogin.setBackground(Color.white);
+        
+    }//GEN-LAST:event_cmdLoginMouseExited
 
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -164,12 +192,13 @@ public class Login extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            /*for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
-            }
+            }*/
+             javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
