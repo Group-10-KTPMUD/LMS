@@ -138,7 +138,8 @@ public class Book {
     public void addBook (String _isbn,String _name,Integer _author_id,Integer _genre_id,Integer _quantity,
                 String _publisher,double _price,String _date_received,String _description,byte[] _cover)
     {
-        String insertQuery = "INSERT INTO `books`(`isbn`, `name`, `author_id`, `genre_id`, `quantity`, `publisher`, `price`, `date_received`, `description`, `cover_image`) VALUES (?,?,?,?,?,?,?,?,?,?)";
+        String insertQuery = "INSERT INTO `books`(`isbn`, `name`, `author_id`, `genre_id`, `quantity`, `publisher`,"
+                + " `price`, `date_received`, `description`, `cover_image`) VALUES (?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = DB.getConnection().prepareStatement(insertQuery);
             
@@ -178,7 +179,8 @@ public class Book {
         try {
             if(_cover != null) // if you want to update the book image
             {
-                 updateQuery = "UPDATE `books` SET `name`=?,`author_id`=?,`genre_id`=?,`quantity`=?,`publisher`=?,`price`=?,`data_received`=?,`description`=?,`cover_image`=? WHERE `id`=?";
+                 updateQuery = "UPDATE `books` SET `name`=?,`author_id`=?,`genre_id`=?,`quantity`=?,`publisher`=?,`price`=?,`date_received`=?,`"
+                         + "description`=?,`cover_image`=? WHERE `id`=?";
                  ps = DB.getConnection().prepareStatement(updateQuery);
 
                  //ps.setString(1, _isbn);
@@ -195,7 +197,7 @@ public class Book {
             }
             else // if not
             {
-                 updateQuery = "UPDATE `books` SET `name`=?,`author_id`=?,`genre_id`=?,`quantity`=?,`publisher`=?,`price`=?,`data_received`=?,`description`=? WHERE `id`=?";
+                 updateQuery = "UPDATE `books` SET `name`=?,`author_id`=?,`genre_id`=?,`quantity`=?,`publisher`=?,`price`=?,`date_received`=?,`description`=? WHERE `id`=?";
                  ps = DB.getConnection().prepareStatement(updateQuery);
 
                  //ps.setString(1, _isbn);
