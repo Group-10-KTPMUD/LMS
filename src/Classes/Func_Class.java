@@ -8,7 +8,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -17,10 +16,6 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-/**
- *
- * @author Champion T
- */
 public class Func_Class {
     // create a function to display the image in jlabel
     public void displayImage(int width, int height, byte[] imagebyte, String imagePath, JLabel label)

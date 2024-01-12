@@ -16,7 +16,7 @@ import javax.swing.border.Border;
 public class Dashboard extends javax.swing.JFrame {
     public Dashboard() {
         initComponents();
-        setSize(1240,680);
+        setSize(1258,715);
         //Center the form
         this.setLocationRelativeTo(null);
         displayImage();
@@ -369,6 +369,11 @@ public class Dashboard extends javax.swing.JFrame {
         jButton_Gach.setText("|");
         jButton_Gach.setContentAreaFilled(false);
         jButton_Gach.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton_Gach.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_GachActionPerformed(evt);
+            }
+        });
 
         jButton_Manage_users.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton_Manage_users.setForeground(new java.awt.Color(255, 255, 255));
@@ -387,18 +392,14 @@ public class Dashboard extends javax.swing.JFrame {
             jPanel_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel_Header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_MenuLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 11, Short.MAX_VALUE)
                 .addComponent(jButton_BorrowBook_)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton_Gach)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton_ReturnBook_, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(155, 155, 155))
             .addGroup(jPanel_MenuLayout.createSequentialGroup()
                 .addGroup(jPanel_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_MenuLayout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addGroup(jPanel_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1_Circulation)
                             .addGroup(jPanel_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(jPanel_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel14)
@@ -428,11 +429,20 @@ public class Dashboard extends javax.swing.JFrame {
                                                 .addComponent(jButton_Edit_Member_, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(jButton_Add_Member_, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(jButton_Delete_Member_, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jButton_List_Member_, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
+                                                .addComponent(jButton_List_Member_, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                            .addGroup(jPanel_MenuLayout.createSequentialGroup()
+                                .addGroup(jPanel_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel_MenuLayout.createSequentialGroup()
+                                        .addComponent(jLabel1_Circulation)
+                                        .addGap(20, 20, 20))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_MenuLayout.createSequentialGroup()
+                                        .addComponent(jButton_Gach)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                                .addComponent(jButton_ReturnBook_))))
                     .addGroup(jPanel_MenuLayout.createSequentialGroup()
-                        .addGap(61, 61, 61)
+                        .addGap(63, 63, 63)
                         .addComponent(jButton_Manage_users)))
-                .addGap(0, 72, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel_MenuLayout.setVerticalGroup(
             jPanel_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -473,9 +483,9 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(jButton_BorrowBook_)
                     .addComponent(jButton_ReturnBook_)
                     .addComponent(jButton_Gach))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton_Manage_users)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel_2.setBackground(new java.awt.Color(75, 192, 18));
@@ -795,7 +805,7 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(jPanel_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel_3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel_4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
                 .addComponent(jPanel_5, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -893,6 +903,10 @@ public class Dashboard extends javax.swing.JFrame {
         AddMemberForm addMemberForm =new AddMemberForm();
         addMemberForm.setVisible(true);
     }//GEN-LAST:event_jButton_Add_Member_ActionPerformed
+
+    private void jButton_GachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_GachActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_GachActionPerformed
  
     /*public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

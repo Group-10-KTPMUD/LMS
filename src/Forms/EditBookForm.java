@@ -214,7 +214,7 @@ import javax.swing.border.Border;
 
         jButton_Select_Image.setBackground(new java.awt.Color(0, 153, 102));
         jButton_Select_Image.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton_Select_Image.setForeground(new java.awt.Color(255, 255, 255));
+        jButton_Select_Image.setForeground(new java.awt.Color(0, 0, 0));
         jButton_Select_Image.setText("Select Picture");
         jButton_Select_Image.setOpaque(true);
         jButton_Select_Image.addActionListener(new java.awt.event.ActionListener() {

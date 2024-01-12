@@ -1,14 +1,6 @@
 package Forms;
 
-import Classes.DB;
-import Classes.Users;
 import java.awt.Color;
-import java.sql.ResultSet;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
@@ -129,7 +121,6 @@ public class Login extends javax.swing.JFrame {
         //Get the username and Password
         String username = txtUser.getText();
         String password = String.valueOf(txtPassword.getPassword());
-        
        
         //Check if the fields are empty
         if(username.trim().equals("") && password.trim().equals("")){

@@ -78,7 +78,6 @@ public class Users {
     }
     
     Classes.Func_Class func = new Classes.Func_Class();
-
     
     // insert a new user function
     public void addUser (String _fname, String _lname, String _username, String _password, String _user_type)
@@ -166,7 +165,7 @@ public class Users {
                 exists = true;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Author.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Users.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return exists;
@@ -205,7 +204,7 @@ public class Users {
                 user = new Users(rs.getInt("id"), rs.getString("firstName"), rs.getString("lastName"), rs.getString("username"), rs.getString("password"), rs.getString("user_type"));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Author.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Users.class.getName()).log(Level.SEVERE, null, ex);
         }
         return user;
     }
