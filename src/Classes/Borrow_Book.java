@@ -181,9 +181,6 @@ public class Borrow_Book {
             ps = DB.getConnection().prepareStatement("SELECT COUNT(*) as total FROM `borrow_book` WHERE book_id = ? and `status` = 'borrowed'");
             ps.setInt(1, _book_id);
             rs = ps.executeQuery();
-            
-            
-            
                 if (rs.next())
                 { 
                 total = rs.getInt("total");
