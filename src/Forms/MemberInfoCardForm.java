@@ -10,11 +10,8 @@ import java.sql.SQLException;
 
     public class MemberInfoCardForm extends javax.swing.JFrame {
 
-    //Creates new form BooksListForm
     Classes.Member member = new Classes.Member();
     Classes.Func_Class func = new Classes.Func_Class();
-    Classes.Author author = new Classes.Author();
-    Classes.Genre genre = new Classes.Genre();
     
     public MemberInfoCardForm(int member_id) {
         initComponents();
