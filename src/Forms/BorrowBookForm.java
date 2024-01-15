@@ -351,7 +351,7 @@ import javax.swing.border.Border;
     }//GEN-LAST:event_jLabel_CloseForm_MouseClicked
 
     private void jButton_Borrow_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_Borrow_MouseClicked
- 
+
     }//GEN-LAST:event_jButton_Borrow_MouseClicked
 
     private void jButton_Borrow_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Borrow_ActionPerformed
@@ -362,8 +362,8 @@ import javax.swing.border.Border;
         
         SimpleDateFormat dateFormat =new SimpleDateFormat("YYYY-MM-dd");
         try{
-            String _borrow_date=dateFormat.format(jDateChooser_BorrowDate.getDate());
-            String _return_date=dateFormat.format(jDateChooser_ReturnDate.getDate());
+            String _borrow_date = dateFormat.format(jDateChooser_BorrowDate.getDate());
+            String _return_date = dateFormat.format(jDateChooser_ReturnDate.getDate());
             
             //before borrow a book, we need to check if the return date came the borrow date
             Date borrowDate = dateFormat.parse(_borrow_date);
@@ -380,8 +380,6 @@ import javax.swing.border.Border;
             else if(!borrow.checkBookAvailability(_book_id)){
                JOptionPane.showMessageDialog(null,"This book is not available right now","Book is not available", 2);
             }
-            
-            
             else if(returnDate.before(borrowDate)){ //If the borrow date is after the return date
                 JOptionPane.showMessageDialog(null,"The Return date must be after the Borrow date","Wrong Return Date", 2);
             }
@@ -408,7 +406,7 @@ import javax.swing.border.Border;
     }//GEN-LAST:event_jButton_Borrow_ActionPerformed
 
     private void jButton_Cancel_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_Cancel_MouseClicked
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jButton_Cancel_MouseClicked
 
     private void jButton_Cancel_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Cancel_ActionPerformed

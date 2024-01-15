@@ -368,7 +368,7 @@ import javax.swing.table.DefaultTableModel;
 
     private void jButton_Return_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Return_ActionPerformed
         //Return a book
-        //we will update the return date the note
+        //we will update the return date, the note
         //NOTE: If you change a book status from LOST to RETURNED you need to update the quantity 
         // or you can prevent the user from changing the status when it's set to lost 
         int _book_id = (int) jSpinner_BookID.getValue();
@@ -407,12 +407,12 @@ import javax.swing.table.DefaultTableModel;
     }//GEN-LAST:event_jButton_Return_ActionPerformed
 
     private void jButton_Lost_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_Lost_MouseClicked
-        // TODO add your handling code here:
+    
     }//GEN-LAST:event_jButton_Lost_MouseClicked
 
     private void jButton_Lost_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Lost_ActionPerformed
         // the book is lost
-        // ew need to the book status to lost
+        // we need to the book status to lost
         // and update the book quantity 
         // the new quantity = the quantity - 1
         // even if the book is lost we will not change the return date
@@ -548,11 +548,11 @@ import javax.swing.table.DefaultTableModel;
     }//GEN-LAST:event_jComboBox_Status_ActionPerformed
 
     private void jButton_Delete_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_Delete_MouseClicked
-        // TODO add your handling code here:
+  
     }//GEN-LAST:event_jButton_Delete_MouseClicked
 
     private void jButton_Delete_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Delete_ActionPerformed
-        // delete the selected issue from the database        
+        // delete the selected borrow from the database        
         
         // get the selected row index
         int index = jTable_BorrowedBooks_.getSelectedRow();
