@@ -34,7 +34,7 @@ public class AddMemberForm extends javax.swing.JFrame {
         jPanel1.setBorder(panelHeaderBorder);
         
         // display image in the top
-        ;
+        
         func.displayImage(75, 60,null, "/Images/member.png", jLabel_FormTitle);
         
         // hide the jlabel "empty name massage"
@@ -309,7 +309,7 @@ public class AddMemberForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel_CloseForm_MouseClicked
 
     private void jButton_Add_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Add_ActionPerformed
-        // hide the jlabel "empty  massage"
+        // hide the jlabel "empty message"
         jLabel_EmptyFirstName_.setVisible(false);
         jLabel_EmptyLastName_.setVisible(false);
         jLabel_EmptyPhone_.setVisible(false);   

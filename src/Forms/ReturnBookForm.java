@@ -20,7 +20,6 @@ import javax.swing.table.DefaultTableModel;
     //Creates Borrow Book form
         
     Classes.Member member = new Classes.Member();
-    Classes.Func_Class func = new Classes.Func_Class();
     Classes.Book book = new Classes.Book();
     Classes.Borrow_Book borrow = new Classes.Borrow_Book();
     

@@ -192,7 +192,7 @@ public class DeleteMemberForm extends javax.swing.JFrame {
            }
             
         } catch (Exception e) {
-            jLabel_EmptyID.setForeground(Color.lightGray);
+            jLabel_EmptyID.setForeground(Color.red);
         }
  
     }//GEN-LAST:event_jButton_Delete_ActionPerformed
