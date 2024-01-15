@@ -16,7 +16,6 @@ import javax.swing.border.Border;
 
     //Creates Add book form
      
-    Classes.Member member = new Classes.Member();
     Classes.Func_Class func = new Classes.Func_Class();
     Classes.Genre genre = new Classes.Genre();
     HashMap<String,Integer> genresMap= genre.getGenresMap();
