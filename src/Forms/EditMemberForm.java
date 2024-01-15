@@ -2,8 +2,6 @@ package Forms;
 
 import Classes.Member;
 import java.awt.Color;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
