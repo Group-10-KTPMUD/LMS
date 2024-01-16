@@ -138,17 +138,11 @@ public class Login extends javax.swing.JFrame {
                     // if usertype is simple user hide circulation and Manage Users
                     
                     Dashboard dash_f = new Dashboard();
-                    if(user.getUserType().equals("user")){
-                        dash_f.jLabel1_Circulation.setVisible(false);
-                        dash_f.jButton_BorrowBook_.setVisible(false);
-                        dash_f.jButton_ReturnBook_.setVisible(false);
+                    if(user.getUserType().equals("admin")){
                         dash_f.jButton_Manage_users.setVisible(false);
-                        dash_f.jButton_Gach.setVisible(false);
                          // Show Welcome Back User
                          dash_f.jLabel_Welcome_Back.setText("Welcome Back ["+user.getUsername()+" ]");
                         
-                    }else if(user.getUserType().equals("admin")){
-                        dash_f.jButton_Manage_users.setVisible(false);
                     }
                     // Show Welcome Back User
                     dash_f.jLabel_Welcome_Back.setText("Welcome Back "+user.getUsername());
